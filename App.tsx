@@ -1,4 +1,4 @@
 import React from 'react';
-import HomeScreen from './src/Screens/HomeScreen/HomeScreen';
-const App = () => <HomeScreen />;
+import AppNavigation from './src/Routes/AppNavigation';
+const App = () => <AppNavigation />;
 export default App;

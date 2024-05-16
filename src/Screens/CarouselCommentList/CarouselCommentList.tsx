@@ -1,10 +1,12 @@
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import React, {useEffect} from 'react';
-import CommentItem, {Comment} from './CommentItem';
-import {randomData} from './RandomData';
-import {FlashList} from '@shopify/flash-list';
 
-const HomeScreen = () => {
+import {FlashList} from '@shopify/flash-list';
+import CommonStyle from '../../Helpers/CommonStyle';
+import CommentItem, {Comment} from '../../Components/CommentItem';
+import {randomData} from '../../data/RandomData';
+
+const CarouselCommentList = () => {
   const [data, setData] = React.useState<Comment[]>([]);
 
   useEffect(() => {
@@ -16,27 +18,24 @@ const HomeScreen = () => {
         body:
           item[2] +
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut alias tenetur dolorum vero blanditiis eveniet nisi, mollitia ipsa repudiandae! Tempore facilis quaerat',
-        image: 'https://picsum.photos/200/300',
+        image: [
+          'https://picsum.photos/200/300',
+          'https://picsum.photos/200/300',
+        ],
       };
     });
     setData(parsedData as Comment[]);
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={CommonStyle.flex}>
       <FlashList
         data={data}
         estimatedItemSize={300}
         renderItem={({item}) => <CommentItem item={item} />}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
-export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default CarouselCommentList;
