@@ -1,8 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
-import CommentItem, {Comment} from '../../Components/CommentItem';
-import {randomData} from '../../data/RandomData';
+
 import {FlashList} from '@shopify/flash-list';
+import {randomData} from '@/data/RandomData';
+import CommentItem, {Comment} from '@/Components/CommentItem';
 
 const SimpleCommentList = () => {
   const [data, setData] = React.useState<Comment[]>([]);

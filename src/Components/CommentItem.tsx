@@ -1,10 +1,13 @@
 import {Image, StyleSheet, Text} from 'react-native';
 import React from 'react';
-import CommonStyle from '../Helpers/CommonStyle';
+
 import LinearGradient from 'react-native-linear-gradient';
-import {randomColor} from '../Helpers/Utils';
+
 import Carousel from 'react-native-reanimated-carousel';
-import {widthPx} from '../Helpers/Responsive';
+import {randomColor} from 'utils';
+import {CommonStyle} from '@/Helpers';
+import {widthPx} from 'measurements';
+
 export interface Comment {
   id: number;
   name: string;

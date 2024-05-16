@@ -1,9 +1,8 @@
 import {Pressable, StyleSheet, Text} from 'react-native';
 import React, {useCallback} from 'react';
-import Colors from '../../Helpers/Colors';
-import CommonStyle from '../../Helpers/CommonStyle';
-import Screens from '../../Helpers/Screens';
+
 import {useNavigation} from '@react-navigation/native';
+import {Colors, CommonStyle, Screens} from '@/Helpers';
 
 interface CardProps {
   title: string;

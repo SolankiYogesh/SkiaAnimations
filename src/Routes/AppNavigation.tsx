@@ -1,10 +1,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import SimpleCommentList from '../Screens/SimpleCommentList/SimpleCommentList';
-import Screens from '../Helpers/Screens';
-import InitialScreen from '../Screens/InitialScreen/InitialScreen';
-import CarouselCommentList from '../Screens/CarouselCommentList/CarouselCommentList';
+import {Screens} from '@/Helpers';
+import {CarouselCommentList, InitialScreen, SimpleCommentList} from '@/Screens';
+
 const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
   return (

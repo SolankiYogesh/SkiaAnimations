@@ -1,9 +1,7 @@
 import {View} from 'react-native';
 import React from 'react';
-import CommonStyle from '../../Helpers/CommonStyle';
 import Card from './Card';
-import Screens from '../../Helpers/Screens';
-
+import {CommonStyle, Screens} from '@/Helpers';
 const InitialScreen = () => {
   return (
     <View style={CommonStyle.flex}>
@@ -16,16 +14,8 @@ const InitialScreen = () => {
         title="Comment List With FlashList + Carousel"
       />
       <Card
-        screen={Screens.SimpleCommentList}
-        title="Comment List With FlashList"
-      />
-      <Card
-        screen={Screens.SimpleCommentList}
-        title="Comment List With FlashList"
-      />
-      <Card
-        screen={Screens.SimpleCommentList}
-        title="Comment List With FlashList"
+        screen={Screens.CarouselCommentList}
+        title="Reels List With FlashList"
       />
     </View>
   );

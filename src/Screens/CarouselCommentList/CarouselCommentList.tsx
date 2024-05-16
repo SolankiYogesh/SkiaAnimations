@@ -2,9 +2,9 @@ import {View} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {FlashList} from '@shopify/flash-list';
-import CommonStyle from '../../Helpers/CommonStyle';
-import CommentItem, {Comment} from '../../Components/CommentItem';
-import {randomData} from '../../data/RandomData';
+import {randomData} from '@/data/RandomData';
+import CommentItem, {Comment} from '@/Components/CommentItem';
+import {CommonStyle} from '@/Helpers';
 
 const CarouselCommentList = () => {
   const [data, setData] = React.useState<Comment[]>([]);
