@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from './Colors';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from './Measurements';
 
 const CommonStyle = StyleSheet.create({
   flex: {
@@ -23,6 +24,10 @@ const CommonStyle = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  screen: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
   },
 });
 export default CommonStyle;

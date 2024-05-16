@@ -13,10 +13,7 @@ const InitialScreen = () => {
         screen={Screens.CarouselCommentList}
         title="Comment List With FlashList + Carousel"
       />
-      <Card
-        screen={Screens.CarouselCommentList}
-        title="Reels List With FlashList"
-      />
+      <Card screen={Screens.ReelsScreen} title="Reels List With FlashList" />
     </View>
   );
 };

@@ -1,12 +1,12 @@
 import {Dimensions} from 'react-native';
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+const {width: WINDOW_WIDTH, height: WINDOW_HEIGHT} = Dimensions.get('window');
+const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('screen');
 
 const widthPx = (widthPercent: number) => {
   const elemWidth =
     typeof widthPercent === 'number' ? widthPercent : parseFloat(widthPercent);
-  return (screenWidth * elemWidth) / 100;
+  return (WINDOW_WIDTH * elemWidth) / 100;
 };
 
 const heightPx = (heightPercent: number) => {
@@ -14,6 +14,13 @@ const heightPx = (heightPercent: number) => {
     typeof heightPercent === 'number'
       ? heightPercent
       : parseFloat(heightPercent);
-  return (screenHeight * elemHeight) / 100;
+  return (WINDOW_HEIGHT * elemHeight) / 100;
 };
-export {widthPx, heightPx};
+export {
+  widthPx,
+  heightPx,
+  WINDOW_WIDTH,
+  WINDOW_HEIGHT,
+  SCREEN_WIDTH,
+  SCREEN_HEIGHT,
+};
