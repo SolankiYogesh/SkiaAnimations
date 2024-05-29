@@ -1,10 +1,10 @@
-import {View} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {FlashList} from '@shopify/flash-list';
 import {randomData} from '@/data/RandomData';
 import CommentItem, {Comment} from '@/Components/CommentItem';
-import {CommonStyle} from '@/Helpers';
+
+import AppContainer from '@/Components/AppContianer';
 
 const CarouselCommentList = () => {
   const [data, setData] = React.useState<Comment[]>([]);
@@ -28,13 +28,13 @@ const CarouselCommentList = () => {
   }, []);
 
   return (
-    <View style={CommonStyle.flex}>
+    <AppContainer>
       <FlashList
         data={data}
         estimatedItemSize={300}
         renderItem={({item}) => <CommentItem item={item} />}
       />
-    </View>
+    </AppContainer>
   );
 };
 

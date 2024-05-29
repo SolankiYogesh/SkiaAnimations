@@ -1,9 +1,9 @@
-import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {FlashList} from '@shopify/flash-list';
 import {randomData} from '@/data/RandomData';
 import CommentItem, {Comment} from '@/Components/CommentItem';
+import AppContainer from '@/Components/AppContianer';
 
 const SimpleCommentList = () => {
   const [data, setData] = React.useState<Comment[]>([]);
@@ -24,20 +24,14 @@ const SimpleCommentList = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <AppContainer>
       <FlashList
         data={data}
         estimatedItemSize={300}
         renderItem={({item}) => <CommentItem item={item} />}
       />
-    </View>
+    </AppContainer>
   );
 };
 
 export default SimpleCommentList;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

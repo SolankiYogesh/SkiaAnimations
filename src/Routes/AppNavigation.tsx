@@ -1,13 +1,14 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Screens} from '@/Helpers';
+import {Colors, Screens} from '@/Helpers';
 import {
   CarouselCommentList,
   InitialScreen,
   ReelsScreen,
   SimpleCommentList,
 } from '@/Screens';
+import {Icon} from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
@@ -17,6 +18,9 @@ const AppNavigation = () => {
         <Stack.Screen
           options={{
             headerTitle: 'Explore',
+            headerRight: () => (
+              <Icon size={30} source={'sunny'} color={Colors.black} />
+            ),
           }}
           name={Screens.Initial}
           component={InitialScreen}

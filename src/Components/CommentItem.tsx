@@ -35,9 +35,11 @@ const CommentItem = (props: CommentItemProps) => {
           width={widthPx(90)}
           height={200}
           autoPlay={true}
+          panGestureHandlerProps={{
+            activeOffsetX: [-10, 10],
+          }}
           data={item.image}
-          scrollAnimationDuration={1000}
-          onSnapToItem={index => console.log('current index:', index)}
+          scrollAnimationDuration={500}
           renderItem={({item}) => (
             <Image
               style={styles.imageStyle}

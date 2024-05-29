@@ -1,20 +1,53 @@
-import {StatusBar, View} from 'react-native';
-import React, {useState} from 'react';
-import {Colors, CommonStyle} from '@/Helpers';
+import {StatusBar} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
+import {Colors} from '@/Helpers';
 import {FlashList} from '@shopify/flash-list';
 import VideoItem from './Components/VideoItem';
-import {randomData} from '@/data/RandomData';
 import {WINDOW_HEIGHT} from '@/Helpers/Measurements';
+import reelsVideos from '@/data/VideoData';
+import FloatButton from './Components/FloatButton';
+import AppContainer from '@/Components/AppContianer';
 
 const ReelsScreen = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAuto, setIsAuto] = useState(false);
+  const ref = useRef<FlashList<string | number>>(null);
+  const interval = useRef<any>(null);
+
+  const onPress = useCallback(() => {
+    if (isAuto) {
+      if (interval.current) {
+        clearInterval(interval.current);
+        setIsAuto(false);
+      }
+    } else {
+      interval.current = setInterval(() => {
+        setActiveIndex(state => {
+          let index: number;
+          if (state >= reelsVideos.length - 1) {
+            index = 0;
+          } else {
+            index = state + 1;
+          }
+          ref.current?.scrollToIndex({
+            animated: true,
+            index,
+          });
+          return index;
+        });
+      }, 1000);
+      setIsAuto(true);
+    }
+  }, [isAuto]);
+
   return (
-    <View style={CommonStyle.flex}>
+    <AppContainer>
       <StatusBar translucent backgroundColor={Colors.transparent} />
 
       <FlashList
-        data={randomData}
+        data={reelsVideos}
         pagingEnabled
+        ref={ref}
         initialScrollIndex={0}
         snapToAlignment="start"
         decelerationRate={'normal'}
@@ -29,7 +62,8 @@ const ReelsScreen = () => {
           />
         )}
       />
-    </View>
+      <FloatButton onPress={onPress} isActive={isAuto} />
+    </AppContainer>
   );
 };
 
