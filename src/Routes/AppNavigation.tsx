@@ -1,14 +1,16 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Colors, Screens} from '@/Helpers';
+import {Screens} from '@/Helpers';
 import {
+  AnimatedListUserScreen,
   CarouselCommentList,
   InitialScreen,
+  SkiAnimatedDog,
   ReelsScreen,
   SimpleCommentList,
+  TopSheetWithGuard,
 } from '@/Screens';
-import {Icon} from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
@@ -18,9 +20,6 @@ const AppNavigation = () => {
         <Stack.Screen
           options={{
             headerTitle: 'Explore',
-            headerRight: () => (
-              <Icon size={30} source={'sunny'} color={Colors.black} />
-            ),
           }}
           name={Screens.Initial}
           component={InitialScreen}
@@ -45,6 +44,27 @@ const AppNavigation = () => {
           }}
           name={Screens.ReelsScreen}
           component={ReelsScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.TopSheetWithGuard}
+          component={TopSheetWithGuard}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: 'Animated List',
+          }}
+          name={Screens.AnimatedListUserScreen}
+          component={AnimatedListUserScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.SkiAnimatedDog}
+          component={SkiAnimatedDog}
         />
       </Stack.Navigator>
     </NavigationContainer>

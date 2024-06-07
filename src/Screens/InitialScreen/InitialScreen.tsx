@@ -14,6 +14,8 @@ const InitialScreen = () => {
         title="Comment List With FlashList + Carousel"
       />
       <Card screen={Screens.ReelsScreen} title="Reels List With FlashList" />
+      <Card screen={Screens.AnimatedListUserScreen} title="Animated List " />
+      <Card screen={Screens.SkiAnimatedDog} title="Ski Animated Dog" />
     </AppContainer>
   );
 };
