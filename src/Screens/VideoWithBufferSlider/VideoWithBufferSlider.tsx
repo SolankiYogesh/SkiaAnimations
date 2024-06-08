@@ -1,20 +1,13 @@
-import {StyleSheet, View} from 'react-native';
-import React, {memo, useEffect, useRef, useState} from 'react';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import React, {useRef, useState} from 'react';
+
 import {CommonStyle} from '@/Helpers';
 import Video, {VideoRef} from 'react-native-video';
-import {getPercentage, getSlideTime} from '@/Helpers/Utils';
-import {useSharedValue, withTiming} from 'react-native-reanimated';
-import {ActivityIndicator} from 'react-native-paper';
 import {Slider} from 'react-native-awesome-slider';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSharedValue, withTiming} from 'react-native-reanimated';
+import {getPercentage, getSlideTime} from '@/Helpers/Utils';
 
-interface VideoItemProps {
-  url: string;
-  isVisible: boolean;
-}
-const VideoItem = (props: VideoItemProps) => {
-  const {url, isVisible} = props;
-  const [isPaused, setIsPaused] = useState(true);
+const VideoWithBufferSlider = () => {
   const min = useSharedValue(0);
   const max = useSharedValue(100);
   const progress = useSharedValue(0);
@@ -22,48 +15,42 @@ const VideoItem = (props: VideoItemProps) => {
   const duration = useSharedValue(0);
   const videoRef = useRef<VideoRef>(null);
   const [isBuffering, setIsBuffering] = useState(false);
-  const {bottom} = useSafeAreaInsets();
-
-  useEffect(() => {
-    setIsPaused(!isVisible);
-  }, [isVisible]);
 
   return (
-    <View style={CommonStyle.screen}>
+    <View style={CommonStyle.flex}>
       <Video
-        paused={isPaused}
-        source={{uri: url}}
-        style={[CommonStyle.flex]}
-        onProgress={event => {
-          if (event) {
-            const current = getPercentage(event.currentTime, duration.value);
-            const buffer = getPercentage(
-              event.playableDuration,
-              duration.value,
-            );
-            progress.value = withTiming(current);
-            cacheProgress.value = withTiming(buffer);
-          }
+        source={{
+          uri: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         }}
+        ref={videoRef}
+        onProgress={event => {
+          const current = getPercentage(event.currentTime, duration.value);
+          const buffer = getPercentage(event.playableDuration, duration.value);
+          progress.value = withTiming(current);
+          cacheProgress.value = withTiming(buffer);
+        }}
+        resizeMode="contain"
         playInBackground={false}
         onLoadStart={() => setIsBuffering(true)}
         onLoad={({duration: d}) => {
           duration.value = d;
           setIsBuffering(false);
         }}
+        style={styles.container}
       />
       {!isBuffering && (
         <Slider
           cache={cacheProgress}
           progress={progress}
           minimumValue={min}
-          style={[styles.sliderStyle, {bottom}]}
+          style={styles.sliderStyle}
           onSlidingComplete={value => {
             videoRef.current?.seek(getSlideTime(value, duration.value));
           }}
           maximumValue={max}
         />
       )}
+
       {isBuffering && (
         <View
           style={[
@@ -78,7 +65,7 @@ const VideoItem = (props: VideoItemProps) => {
   );
 };
 
-export default memo(VideoItem);
+export default VideoWithBufferSlider;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
@@ -86,7 +73,7 @@ const styles = StyleSheet.create({
   },
   sliderStyle: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 50,
     width: '95%',
     alignSelf: 'center',
   },

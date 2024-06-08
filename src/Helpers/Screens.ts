@@ -6,5 +6,6 @@ enum Screens {
   TopSheetWithGuard = 'TopSheetWithGuard',
   AnimatedListUserScreen = 'AnimatedListUserScreen',
   SkiAnimatedDog = 'SkianimatedDog',
+  VideoWithBufferSlider = 'VideoWithBufferSlider',
 }
 export default Screens;

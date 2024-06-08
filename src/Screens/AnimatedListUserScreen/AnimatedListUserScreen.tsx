@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import AppContainer from '@/Components/AppContianer';
 import UserItem from './Components/UserItem';
 import {CommonStyle} from '@/Helpers';
-import Animated, {CurvedTransition} from 'react-native-reanimated';
+import Animated, {LinearTransition} from 'react-native-reanimated';
 import _ from 'lodash';
 function getRandomScore() {
   return Math.floor(Math.random() * 100) + 1;
@@ -77,7 +77,7 @@ const AnimatedListUserScreen = () => {
         </View>
       ) : (
         <Animated.FlatList
-          itemLayoutAnimation={CurvedTransition.duration(1000)}
+          itemLayoutAnimation={LinearTransition.springify().duration(5000)}
           refreshControl={
             <RefreshControl
               refreshing={isRefreshing}

@@ -15,4 +15,15 @@ function hexadecimal(color: string) {
     return color + decimal;
   };
 }
-export {randomColor, hexadecimal};
+
+const getPercentage = (value: number, duration: number) => {
+  const progress = (value / duration) * 100;
+  return Number.isNaN(progress) ? 0 : progress;
+};
+
+const getSlideTime = (percentage: number, duration: number) => {
+  const progress = duration * (percentage / 100);
+  return Number.isNaN(progress) ? 0 : progress;
+};
+
+export {randomColor, hexadecimal, getPercentage, getSlideTime};

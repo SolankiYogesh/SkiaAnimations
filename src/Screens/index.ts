@@ -5,8 +5,9 @@ import ReelsScreen from './ReelsScreen/ReelsScreen';
 import TopSheetWithGuard from './TopSheetWithGuard/TopSheetWithGuard';
 import AnimatedListUserScreen from './AnimatedListUserScreen/AnimatedListUserScreen';
 import SkiAnimatedDog from './SkiAnimatedDog/SkiAnimatedDog';
-
+import VideoWithBufferSlider from './VideoWithBufferSlider/VideoWithBufferSlider';
 export {
+  VideoWithBufferSlider,
   SkiAnimatedDog,
   AnimatedListUserScreen,
   CarouselCommentList,

@@ -10,6 +10,7 @@ import {
   ReelsScreen,
   SimpleCommentList,
   TopSheetWithGuard,
+  VideoWithBufferSlider,
 } from '@/Screens';
 
 const Stack = createNativeStackNavigator();
@@ -65,6 +66,13 @@ const AppNavigation = () => {
           }}
           name={Screens.SkiAnimatedDog}
           component={SkiAnimatedDog}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: 'React Query',
+          }}
+          name={Screens.VideoWithBufferSlider}
+          component={VideoWithBufferSlider}
         />
       </Stack.Navigator>
     </NavigationContainer>

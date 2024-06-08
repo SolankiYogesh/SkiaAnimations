@@ -7,6 +7,7 @@ import Carousel from 'react-native-reanimated-carousel';
 import {randomColor} from 'utils';
 import {CommonStyle} from '@/Helpers';
 import {widthPx} from 'measurements';
+import Animated from 'react-native-reanimated';
 
 export interface Comment {
   id: number;
@@ -40,17 +41,17 @@ const CommentItem = (props: CommentItemProps) => {
           }}
           data={item.image}
           scrollAnimationDuration={500}
-          renderItem={({item}) => (
+          renderItem={({item: ItemR}) => (
             <Image
               style={styles.imageStyle}
               source={{
-                uri: item,
+                uri: ItemR,
               }}
             />
           )}
         />
       ) : (
-        <Image
+        <Animated.Image
           style={styles.imageStyle}
           source={{
             uri: item.image as string,
