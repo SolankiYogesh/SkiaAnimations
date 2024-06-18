@@ -18,12 +18,12 @@ function hexadecimal(color: string) {
 
 const getPercentage = (value: number, duration: number) => {
   const progress = (value / duration) * 100;
-  return Number.isNaN(progress) ? 0 : progress;
+  return Number.isNaN(progress) || !Number.isFinite(progress) ? 0 : progress;
 };
 
 const getSlideTime = (percentage: number, duration: number) => {
   const progress = duration * (percentage / 100);
-  return Number.isNaN(progress) ? 0 : progress;
+  return Number.isNaN(progress) || !Number.isFinite(progress) ? 0 : progress;
 };
 
 export {randomColor, hexadecimal, getPercentage, getSlideTime};

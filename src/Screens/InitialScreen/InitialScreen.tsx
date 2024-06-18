@@ -6,16 +6,8 @@ import {StyleSheet} from 'react-native';
 const InitialScreen = () => {
   return (
     <AppContainer style={styles.container}>
-      <Card
-        screen={Screens.SimpleCommentList}
-        title="Comment List With FlashList"
-      />
-      <Card
-        screen={Screens.CarouselCommentList}
-        title="Comment List With FlashList + Carousel"
-      />
-      <Card screen={Screens.ReelsScreen} title="Reels List With FlashList" />
-      <Card screen={Screens.AnimatedListUserScreen} title="Animated List " />
+      <Card screen={Screens.BottomNavigation} title="List" />
+
       <Card screen={Screens.SkiAnimatedDog} title="Ski Animated Dog" />
       <Card
         screen={Screens.VideoWithBufferSlider}

@@ -1,68 +1,51 @@
-import {FlatList, StatusBar} from 'react-native';
-import React, {useCallback, useRef, useState} from 'react';
-import {Colors, CommonStyle} from '@/Helpers';
+import {Platform, StatusBar} from 'react-native';
+import React, {useMemo, useRef} from 'react';
+import {Colors} from '@/Helpers';
 import VideoItem from './Components/VideoItem';
+import {useHeaderHeight} from '@react-navigation/elements';
+import data, {TVideoItem} from '@/data/VideoData';
 
-import reelsVideos from '@/data/VideoData';
-import FloatButton from './Components/FloatButton';
 import AppContainer from '@/Components/AppContianer';
+import {ViewabilityTrackerFlashList} from './Components/ViewabilityTrackerFlashList';
+
+import {FlashList} from '@shopify/flash-list';
+import {
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+import Constant from '@/Helpers/Constant';
 
 const ReelsScreen = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAuto, setIsAuto] = useState(false);
-  const ref = useRef<FlatList>(null);
-  const interval = useRef<any>(null);
-  const onPress = useCallback(() => {
-    if (isAuto) {
-      if (interval.current) {
-        clearInterval(interval.current);
-        setIsAuto(false);
-      }
-    } else {
-      interval.current = setInterval(() => {
-        setActiveIndex(state => {
-          let index: number;
-          if (state >= reelsVideos.length - 1) {
-            index = 0;
-          } else {
-            index = state + 1;
-          }
-          ref.current?.scrollToIndex({
-            animated: true,
-            index,
-          });
-          return index;
-        });
-      }, 1000);
-      setIsAuto(true);
-    }
-  }, [isAuto]);
+  const ref = useRef<FlashList<TVideoItem>>(null);
+  const height = useHeaderHeight();
+  const frame = useSafeAreaFrame();
+  const {bottom} = useSafeAreaInsets();
+  console.log('bottom', Platform.OS, Constant.HEIGHT + (bottom || 34));
+
+  const currentHeight = useMemo(() => frame.height - height, [height, frame]);
 
   return (
     <AppContainer>
       <StatusBar translucent backgroundColor={Colors.transparent} />
 
-      <FlatList
-        data={reelsVideos}
-        pagingEnabled
+      <ViewabilityTrackerFlashList
         ref={ref}
-        keyExtractor={item => item}
-        initialScrollIndex={0}
-        style={CommonStyle.screen}
-        snapToAlignment="start"
-        windowSize={3}
-        showsVerticalScrollIndicator={false}
-        maxToRenderPerBatch={3}
-        decelerationRate={'normal'}
-        bounces={false}
-        onViewableItemsChanged={info => {
-          setActiveIndex(info?.viewableItems[0]?.index || 0);
-        }}
-        renderItem={({index, item}) => (
-          <VideoItem isVisible={activeIndex === index} url={item} />
+        data={data}
+        keyExtractor={item => item.url}
+        renderItem={({item}) => (
+          <VideoItem
+            height={currentHeight}
+            bottom={Constant.HEIGHT + 10 + (bottom || 34)}
+            url={item.url}
+          />
         )}
+        drawDistance={currentHeight}
+        estimatedItemSize={currentHeight}
+        disableIntervalMomentum={true}
+        decelerationRate={'fast'}
+        showsVerticalScrollIndicator={false}
+        pagingEnabled
       />
-      <FloatButton onPress={onPress} isActive={isAuto} />
     </AppContainer>
   );
 };

@@ -19,12 +19,13 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
+import Images from '@/Theme/Images';
 
 const {width, height} = Dimensions.get('window');
 
 const CenterView = () => {
   const rotate = useSharedValue(0);
-  const image = useImage(require('../../Theme/Images/dog.jpg'));
+  const image = useImage(Images.dog);
 
   useEffect(() => {
     rotate.value = withRepeat(withTiming(1, {duration: 10000}), -1, true);

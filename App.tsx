@@ -11,7 +11,7 @@ const App = () => (
       <StatusBar
         translucent
         barStyle={'dark-content'}
-        backgroundColor={Colors.transparent}
+        backgroundColor={Colors.white}
       />
       <AppNavigation />
     </GestureHandlerRootView>

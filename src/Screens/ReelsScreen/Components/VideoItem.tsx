@@ -1,19 +1,31 @@
 import {StyleSheet, View} from 'react-native';
-import React, {memo, useEffect, useRef, useState} from 'react';
+import React, {memo, useContext, useRef, useState} from 'react';
 import {CommonStyle} from '@/Helpers';
 import Video, {VideoRef} from 'react-native-video';
 import {getPercentage, getSlideTime} from '@/Helpers/Utils';
-import {useSharedValue, withTiming} from 'react-native-reanimated';
+import {
+  runOnJS,
+  useAnimatedReaction,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import {ActivityIndicator} from 'react-native-paper';
 import {Slider} from 'react-native-awesome-slider';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+import {
+  ItemKeyContext,
+  ViewabilityItemsContext,
+} from './ViewabilityTrackerFlashList';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements';
+import Constant from '@/Helpers/Constant';
 
 interface VideoItemProps {
   url: string;
-  isVisible: boolean;
+  height?: number;
+  bottom?: number;
 }
 const VideoItem = (props: VideoItemProps) => {
-  const {url, isVisible} = props;
+  const {url, height = SCREEN_HEIGHT, bottom = Constant.HEIGHT} = props;
   const [isPaused, setIsPaused] = useState(true);
   const min = useSharedValue(0);
   const max = useSharedValue(100);
@@ -22,35 +34,70 @@ const VideoItem = (props: VideoItemProps) => {
   const duration = useSharedValue(0);
   const videoRef = useRef<VideoRef>(null);
   const [isBuffering, setIsBuffering] = useState(false);
-  const {bottom} = useSafeAreaInsets();
+  const id = useContext(ItemKeyContext)!;
+  const context = useContext(ViewabilityItemsContext);
 
-  useEffect(() => {
-    setIsPaused(!isVisible);
-  }, [isVisible]);
+  const invisibleAction = () => {
+    requestAnimationFrame(() => {
+      //videoRef.current?.stopAsync();
+      setIsPaused(true);
+    });
+  };
+
+  const visibleAction = () => {
+    requestAnimationFrame(() => {
+      // you could also do this imperatively instead of calling useState
+      //videoRef.current?.playAsync();
+
+      // here would be also place for adding logic if the current video has already been played
+      // and to reset it to the beginning. This is not implemented here
+
+      setIsPaused(false);
+    });
+  };
+
+  // we stop or play the Video depending on the list visibility state
+  useAnimatedReaction(
+    () => context.value,
+    ctx => {
+      if (ctx.includes(id)) {
+        // do stuff on item visible
+        runOnJS(visibleAction)();
+      } else if (!ctx.includes(id)) {
+        // do stuff on item invisible
+        runOnJS(invisibleAction)();
+      }
+    },
+  );
 
   return (
-    <View style={CommonStyle.screen}>
+    <View
+      style={{
+        width: SCREEN_WIDTH,
+        height,
+      }}>
       <Video
-        paused={isPaused}
-        source={{uri: url}}
-        style={[CommonStyle.flex]}
-        onProgress={event => {
-          if (event) {
-            const current = getPercentage(event.currentTime, duration.value);
-            const buffer = getPercentage(
-              event.playableDuration,
-              duration.value,
-            );
-            progress.value = withTiming(current);
-            cacheProgress.value = withTiming(buffer);
-          }
+        source={{
+          uri: url,
         }}
+        ref={videoRef}
+        onProgress={event => {
+          const current = getPercentage(event.currentTime, duration.value);
+          const buffer = getPercentage(event.playableDuration, duration.value);
+
+          progress.value = withTiming(current);
+          cacheProgress.value = withTiming(buffer);
+        }}
+        repeat
+        paused={isPaused}
+        resizeMode="contain"
         playInBackground={false}
         onLoadStart={() => setIsBuffering(true)}
         onLoad={({duration: d}) => {
           duration.value = d;
           setIsBuffering(false);
         }}
+        style={styles.container}
       />
       {!isBuffering && (
         <Slider

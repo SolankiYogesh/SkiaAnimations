@@ -29,5 +29,12 @@ const CommonStyle = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  absolute: {
+    position: 'absolute',
+  },
 });
 export default CommonStyle;

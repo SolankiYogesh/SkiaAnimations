@@ -7,6 +7,7 @@ import {UserType} from '../AnimatedListUserScreen';
 import Animated, {FadeInDown, PinwheelOut} from 'react-native-reanimated';
 import {Avatar, List} from 'react-native-paper';
 import {Pressable} from 'react-native';
+import Images from '@/Theme/Images';
 interface UserItemProps {
   item: UserType;
   index: number;
@@ -23,11 +24,7 @@ const UserItem = (props: UserItemProps) => {
         description="Item description"
         right={props => (
           <Pressable onPress={onPressDelete}>
-            <Avatar.Image
-              size={45}
-              {...props}
-              source={require('../../../data/Images/bin.png')}
-            />
+            <Avatar.Image size={45} {...props} source={Images.bin} />
           </Pressable>
         )}
         left={props => (

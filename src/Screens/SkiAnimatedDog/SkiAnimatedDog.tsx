@@ -4,10 +4,11 @@ import {Blur, Canvas, Image, useImage} from '@shopify/react-native-skia';
 import {CommonStyle} from '@/Helpers';
 
 import CenterView from './CenterView';
+import Images from '@/Theme/Images';
 
 const SkiAnimatedDog = () => {
   const {height, width} = useWindowDimensions();
-  const background = useImage(require('../../Theme/Images/background.jpg'));
+  const background = useImage(Images.background);
   return (
     <View style={styles.container}>
       <StatusBar barStyle={'light-content'} />

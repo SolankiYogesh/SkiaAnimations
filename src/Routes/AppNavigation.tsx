@@ -2,16 +2,8 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Screens} from '@/Helpers';
-import {
-  AnimatedListUserScreen,
-  CarouselCommentList,
-  InitialScreen,
-  SkiAnimatedDog,
-  ReelsScreen,
-  SimpleCommentList,
-  TopSheetWithGuard,
-  VideoWithBufferSlider,
-} from '@/Screens';
+import {InitialScreen, SkiAnimatedDog, VideoWithBufferSlider} from '@/Screens';
+import BottomNavigation from './BottomNavigation';
 
 const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
@@ -27,12 +19,12 @@ const AppNavigation = () => {
         />
         <Stack.Screen
           options={{
-            headerTitle: 'Simple List',
+            headerTitle: 'List',
           }}
-          name={Screens.SimpleCommentList}
-          component={SimpleCommentList}
+          name={Screens.BottomNavigation}
+          component={BottomNavigation}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{
             headerTitle: 'Carousel List',
           }}
@@ -59,7 +51,7 @@ const AppNavigation = () => {
           }}
           name={Screens.AnimatedListUserScreen}
           component={AnimatedListUserScreen}
-        />
+        /> */}
         <Stack.Screen
           options={{
             headerShown: false,

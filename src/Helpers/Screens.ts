@@ -7,5 +7,6 @@ enum Screens {
   AnimatedListUserScreen = 'AnimatedListUserScreen',
   SkiAnimatedDog = 'SkianimatedDog',
   VideoWithBufferSlider = 'VideoWithBufferSlider',
+  BottomNavigation = 'BottomNavigation',
 }
 export default Screens;
