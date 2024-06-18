@@ -3,13 +3,20 @@ import React, {useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '@/Helpers';
 import {Button, TouchableRipple} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
+import Animated, {FadeInDown} from 'react-native-reanimated';
 
 interface CardProps {
   title: string;
   screen: Screens;
+  index: number;
 }
-const Card = (props: CardProps) => {
-  const {title, screen} = props;
+
+const AnimatedTouchableRipple =
+  Animated.createAnimatedComponent(TouchableRipple);
+
+export default (props: CardProps) => {
+  const {title, screen, index} = props;
   const navigation = useNavigation();
 
   const onPress = useCallback(() => {
@@ -17,12 +24,18 @@ const Card = (props: CardProps) => {
   }, [navigation, screen]);
 
   return (
-    <TouchableRipple>
+    <AnimatedTouchableRipple
+      entering={FadeInDown.delay(index * 50).springify()}
+      style={styles.container}>
       <Button mode="contained-tonal" onPress={onPress}>
         {title}
       </Button>
-    </TouchableRipple>
+    </AnimatedTouchableRipple>
   );
 };
 
-export default Card;
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 10,
+  },
+});

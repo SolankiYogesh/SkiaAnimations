@@ -6,7 +6,9 @@ import TopSheetWithGuard from './TopSheetWithGuard/TopSheetWithGuard';
 import AnimatedListUserScreen from './AnimatedListUserScreen/AnimatedListUserScreen';
 import SkiAnimatedDog from './SkiAnimatedDog/SkiAnimatedDog';
 import VideoWithBufferSlider from './VideoWithBufferSlider/VideoWithBufferSlider';
+import AnimatedLinearScreen from './AnimatedLinearScreen/AnimatedLinearScreen';
 export {
+  AnimatedLinearScreen,
   VideoWithBufferSlider,
   SkiAnimatedDog,
   AnimatedListUserScreen,

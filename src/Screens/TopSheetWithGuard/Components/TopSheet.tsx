@@ -1,4 +1,4 @@
-import React, {forwardRef, memo, useCallback, useImperativeHandle} from 'react';
+import React, {forwardRef, useCallback, useImperativeHandle} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import Animated, {
@@ -21,7 +21,7 @@ interface TopSheetProps {
 export interface TopSheetRef {
   toggle: (isClose?: boolean) => void;
 }
-const TopSheet = forwardRef<TopSheetRef, TopSheetProps>((props, ref) => {
+export default forwardRef<TopSheetRef, TopSheetProps>((props, ref) => {
   const {children, onClose} = props;
   const translateY = useSharedValue(0);
   const isBackDrop = useSharedValue(0);
@@ -131,8 +131,6 @@ const TopSheet = forwardRef<TopSheetRef, TopSheetProps>((props, ref) => {
     </Animated.View>
   );
 });
-
-export default memo(TopSheet);
 
 const styles = StyleSheet.create({
   bottomSheetContainer: {

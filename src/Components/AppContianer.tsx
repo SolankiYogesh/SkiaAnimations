@@ -6,8 +6,6 @@ interface AppContainerProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 }
-const AppContainer = ({children, style}: AppContainerProps) => {
+export default ({children, style}: AppContainerProps) => {
   return <View style={[CommonStyle.flex, style]}>{children}</View>;
 };
-
-export default AppContainer;

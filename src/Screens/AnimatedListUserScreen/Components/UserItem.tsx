@@ -13,7 +13,7 @@ interface UserItemProps {
   index: number;
   onPressDelete: () => void;
 }
-const UserItem = (props: UserItemProps) => {
+export default (props: UserItemProps) => {
   const {item, index, onPressDelete} = props;
   return (
     <Animated.View
@@ -39,5 +39,3 @@ const UserItem = (props: UserItemProps) => {
     </Animated.View>
   );
 };
-
-export default UserItem;

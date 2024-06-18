@@ -12,7 +12,7 @@ import {
 } from '@/Screens';
 
 const Tab = createBottomTabNavigator();
-const BottomNavigation = () => {
+export default () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -35,5 +35,3 @@ const BottomNavigation = () => {
     </Tab.Navigator>
   );
 };
-
-export default BottomNavigation;

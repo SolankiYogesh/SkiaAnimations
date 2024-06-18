@@ -7,7 +7,7 @@ import {Slider} from 'react-native-awesome-slider';
 import {useSharedValue, withTiming} from 'react-native-reanimated';
 import {getPercentage, getSlideTime} from '@/Helpers/Utils';
 
-const VideoWithBufferSlider = () => {
+export default () => {
   const min = useSharedValue(0);
   const max = useSharedValue(100);
   const progress = useSharedValue(0);
@@ -65,7 +65,6 @@ const VideoWithBufferSlider = () => {
   );
 };
 
-export default VideoWithBufferSlider;
 const styles = StyleSheet.create({
   container: {
     width: '100%',

@@ -6,7 +6,7 @@ import CommentItem, {Comment} from '@/Components/CommentItem';
 
 import AppContainer from '@/Components/AppContianer';
 
-const CarouselCommentList = () => {
+export default () => {
   const [data, setData] = React.useState<Comment[]>([]);
 
   useEffect(() => {
@@ -37,5 +37,3 @@ const CarouselCommentList = () => {
     </AppContainer>
   );
 };
-
-export default CarouselCommentList;

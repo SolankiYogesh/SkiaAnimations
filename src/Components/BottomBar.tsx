@@ -41,7 +41,7 @@ const RouteType = {
 const SLIDER_POS =
   Constant.TAB_BAR_WIDTH - Constant.TAB_BAR_WIDTH / 2 - Constant.MARGIN * 2;
 
-const BottomBar = (props: BottomTabBarProps) => {
+export default (props: BottomTabBarProps) => {
   const {navigation, state} = props;
   const {bottom} = useSafeAreaInsets();
 
@@ -110,5 +110,3 @@ const BottomBar = (props: BottomTabBarProps) => {
     </GestureDetector>
   );
 };
-
-export default BottomBar;

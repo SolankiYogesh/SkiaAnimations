@@ -3,21 +3,45 @@ import Card from './Card';
 import {Screens} from '@/Helpers';
 import AppContainer from '@/Components/AppContianer';
 import {StyleSheet} from 'react-native';
-const InitialScreen = () => {
+import Animated from 'react-native-reanimated';
+
+const initialScreenData = [
+  {
+    title: 'List',
+    screen: Screens.BottomNavigation,
+  },
+  {
+    title: 'Ski Animated Dog',
+    screen: Screens.SkiAnimatedDog,
+  },
+  {
+    title: 'Video With Buffer Slider',
+    screen: Screens.VideoWithBufferSlider,
+  },
+  {
+    title: 'Animated Linear Gradient',
+    screen: Screens.AnimatedLinearScreen,
+  },
+  {
+    title: 'Top Sheet',
+    screen: Screens.TopSheetWithGuard,
+  },
+];
+
+export default () => {
   return (
     <AppContainer style={styles.container}>
-      <Card screen={Screens.BottomNavigation} title="List" />
-
-      <Card screen={Screens.SkiAnimatedDog} title="Ski Animated Dog" />
-      <Card
-        screen={Screens.VideoWithBufferSlider}
-        title="Video With Buffer Slider"
+      <Animated.FlatList
+        data={initialScreenData}
+        keyExtractor={item => item.screen}
+        renderItem={({item, index}) => (
+          <Card index={index} screen={item.screen} title={item.title} />
+        )}
       />
     </AppContainer>
   );
 };
 
-export default InitialScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

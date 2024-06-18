@@ -15,7 +15,7 @@ import {
 } from 'react-native-safe-area-context';
 import Constant from '@/Helpers/Constant';
 
-const ReelsScreen = () => {
+export default () => {
   const ref = useRef<FlashList<TVideoItem>>(null);
   const height = useHeaderHeight();
   const frame = useSafeAreaFrame();
@@ -49,5 +49,3 @@ const ReelsScreen = () => {
     </AppContainer>
   );
 };
-
-export default ReelsScreen;

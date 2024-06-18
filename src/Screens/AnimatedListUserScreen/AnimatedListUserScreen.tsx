@@ -1,10 +1,17 @@
-import {ActivityIndicator, RefreshControl, View} from 'react-native';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  StyleSheet,
+  View,
+} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import AppContainer from '@/Components/AppContianer';
 import UserItem from './Components/UserItem';
 import {CommonStyle} from '@/Helpers';
 import Animated, {LinearTransition} from 'react-native-reanimated';
 import _ from 'lodash';
+import Constant from '@/Helpers/Constant';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 function getRandomScore() {
   return Math.floor(Math.random() * 100) + 1;
 }
@@ -37,10 +44,12 @@ function fetchData() {
   });
 }
 
-const AnimatedListUserScreen = () => {
+export default () => {
   const [users, setUsers] = useState<UserType[]>(initialData);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setISLoading] = useState(true);
+  const {top} = useSafeAreaInsets();
+  const styles = myStyle(top);
   const fetchAPIData = useCallback(async (refresh = false) => {
     if (refresh) {
       setIsRefreshing(true);
@@ -78,6 +87,7 @@ const AnimatedListUserScreen = () => {
       ) : (
         <Animated.FlatList
           itemLayoutAnimation={LinearTransition.springify().duration(5000)}
+          contentContainerStyle={styles.container}
           refreshControl={
             <RefreshControl
               refreshing={isRefreshing}
@@ -99,4 +109,9 @@ const AnimatedListUserScreen = () => {
   );
 };
 
-export default AnimatedListUserScreen;
+const myStyle = (top: number) =>
+  StyleSheet.create({
+    container: {
+      paddingBottom: Constant.HEIGHT + (top || 34),
+    },
+  });

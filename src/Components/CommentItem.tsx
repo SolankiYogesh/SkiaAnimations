@@ -19,7 +19,7 @@ export interface Comment {
 interface CommentItemProps {
   item: Comment;
 }
-const CommentItem = (props: CommentItemProps) => {
+export default (props: CommentItemProps) => {
   const {item} = props;
 
   return (
@@ -61,8 +61,6 @@ const CommentItem = (props: CommentItemProps) => {
     </LinearGradient>
   );
 };
-
-export default CommentItem;
 
 const styles = StyleSheet.create({
   itemContainer: {

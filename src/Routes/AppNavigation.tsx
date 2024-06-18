@@ -2,11 +2,17 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Screens} from '@/Helpers';
-import {InitialScreen, SkiAnimatedDog, VideoWithBufferSlider} from '@/Screens';
+import {
+  AnimatedLinearScreen,
+  InitialScreen,
+  SkiAnimatedDog,
+  TopSheetWithGuard,
+  VideoWithBufferSlider,
+} from '@/Screens';
 import BottomNavigation from './BottomNavigation';
 
 const Stack = createNativeStackNavigator();
-const AppNavigation = () => {
+export default () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -24,34 +30,7 @@ const AppNavigation = () => {
           name={Screens.BottomNavigation}
           component={BottomNavigation}
         />
-        {/* <Stack.Screen
-          options={{
-            headerTitle: 'Carousel List',
-          }}
-          name={Screens.CarouselCommentList}
-          component={CarouselCommentList}
-        />
-        <Stack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name={Screens.ReelsScreen}
-          component={ReelsScreen}
-        />
-        <Stack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name={Screens.TopSheetWithGuard}
-          component={TopSheetWithGuard}
-        />
-        <Stack.Screen
-          options={{
-            headerTitle: 'Animated List',
-          }}
-          name={Screens.AnimatedListUserScreen}
-          component={AnimatedListUserScreen}
-        /> */}
+
         <Stack.Screen
           options={{
             headerShown: false,
@@ -61,14 +40,26 @@ const AppNavigation = () => {
         />
         <Stack.Screen
           options={{
-            headerTitle: 'React Query',
+            headerTitle: 'Video Buffering',
           }}
           name={Screens.VideoWithBufferSlider}
           component={VideoWithBufferSlider}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.AnimatedLinearScreen}
+          component={AnimatedLinearScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.TopSheetWithGuard}
+          component={TopSheetWithGuard}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-export default AppNavigation;

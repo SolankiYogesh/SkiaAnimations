@@ -18,7 +18,7 @@ interface TabBoxProps {
   width: number;
 }
 
-const TabBox = (props: TabBoxProps) => {
+export default (props: TabBoxProps) => {
   const {icon, isActive, size, x, animatedSlider, width} = props;
 
   const image = useImage(icon);
@@ -45,5 +45,3 @@ const TabBox = (props: TabBoxProps) => {
     </Group>
   );
 };
-
-export default TabBox;

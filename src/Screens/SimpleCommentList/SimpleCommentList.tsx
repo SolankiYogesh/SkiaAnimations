@@ -5,7 +5,7 @@ import {randomData} from '@/data/RandomData';
 import CommentItem, {Comment} from '@/Components/CommentItem';
 import AppContainer from '@/Components/AppContianer';
 
-const SimpleCommentList = () => {
+export default () => {
   const [data, setData] = React.useState<Comment[]>([]);
 
   useEffect(() => {
@@ -33,5 +33,3 @@ const SimpleCommentList = () => {
     </AppContainer>
   );
 };
-
-export default SimpleCommentList;

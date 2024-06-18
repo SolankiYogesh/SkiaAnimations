@@ -18,6 +18,7 @@ import {
 } from './ViewabilityTrackerFlashList';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements';
 import Constant from '@/Helpers/Constant';
+import {useIsFocused} from '@react-navigation/native';
 
 interface VideoItemProps {
   url: string;
@@ -36,6 +37,7 @@ const VideoItem = (props: VideoItemProps) => {
   const [isBuffering, setIsBuffering] = useState(false);
   const id = useContext(ItemKeyContext)!;
   const context = useContext(ViewabilityItemsContext);
+  const isFocus = useIsFocused();
 
   const invisibleAction = () => {
     requestAnimationFrame(() => {
@@ -60,10 +62,10 @@ const VideoItem = (props: VideoItemProps) => {
   useAnimatedReaction(
     () => context.value,
     ctx => {
-      if (ctx.includes(id)) {
+      if (ctx.includes(id) && isFocus) {
         // do stuff on item visible
         runOnJS(visibleAction)();
-      } else if (!ctx.includes(id)) {
+      } else if (!ctx.includes(id) || !isFocus) {
         // do stuff on item invisible
         runOnJS(invisibleAction)();
       }

@@ -23,12 +23,12 @@ import Images from '@/Theme/Images';
 
 const {width, height} = Dimensions.get('window');
 
-const CenterView = () => {
+export default () => {
   const rotate = useSharedValue(0);
   const image = useImage(Images.dog);
 
   useEffect(() => {
-    rotate.value = withRepeat(withTiming(1, {duration: 10000}), -1, true);
+    rotate.value = withRepeat(withTiming(1, {duration: 5000}), -1, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -103,8 +103,6 @@ const CenterView = () => {
     </View>
   );
 };
-
-export default CenterView;
 
 const styles = StyleSheet.create({
   container: {
