@@ -26,6 +26,10 @@ const initialScreenData = [
     title: 'Top Sheet',
     screen: Screens.TopSheetWithGuard,
   },
+  {
+    title: 'Canvas Draw',
+    screen: Screens.CanvasDrawScreen,
+  },
 ];
 
 export default () => {

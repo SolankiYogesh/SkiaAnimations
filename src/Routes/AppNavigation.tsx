@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Screens} from '@/Helpers';
 import {
   AnimatedLinearScreen,
+  ClipMeScreen,
   InitialScreen,
   SkiAnimatedDog,
   TopSheetWithGuard,
@@ -58,6 +59,13 @@ export default () => {
           }}
           name={Screens.TopSheetWithGuard}
           component={TopSheetWithGuard}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.ClipMeScreen}
+          component={ClipMeScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -9,5 +9,6 @@ enum Screens {
   VideoWithBufferSlider = 'VideoWithBufferSlider',
   BottomNavigation = 'BottomNavigation',
   AnimatedLinearScreen = 'AnimatedLinearScreen',
+  ClipMeScreen = 'ClipMeScreen',
 }
 export default Screens;

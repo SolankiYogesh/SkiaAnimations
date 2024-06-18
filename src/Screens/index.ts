@@ -7,7 +7,9 @@ import AnimatedListUserScreen from './AnimatedListUserScreen/AnimatedListUserScr
 import SkiAnimatedDog from './SkiAnimatedDog/SkiAnimatedDog';
 import VideoWithBufferSlider from './VideoWithBufferSlider/VideoWithBufferSlider';
 import AnimatedLinearScreen from './AnimatedLinearScreen/AnimatedLinearScreen';
+import ClipMeScreen from './ClipMeScreen/ClipMeScreen';
 export {
+  ClipMeScreen,
   AnimatedLinearScreen,
   VideoWithBufferSlider,
   SkiAnimatedDog,
