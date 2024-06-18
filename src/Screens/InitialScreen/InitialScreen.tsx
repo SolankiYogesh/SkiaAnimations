@@ -28,7 +28,7 @@ const initialScreenData = [
   },
   {
     title: 'Canvas Draw',
-    screen: Screens.CanvasDrawScreen,
+    screen: Screens.ClipMeScreen,
   },
 ];
 
