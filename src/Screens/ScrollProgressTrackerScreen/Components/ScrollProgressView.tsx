@@ -27,8 +27,6 @@ export default ({y, height}: ScrollProgressViewProps) => {
   });
 
   const animatedProps = useAnimatedProps(() => {
-    console.log(progress.value);
-
     return {
       text: `${progress.value}%`,
     };

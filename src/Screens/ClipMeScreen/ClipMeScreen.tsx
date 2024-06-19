@@ -39,6 +39,14 @@ export default () => {
     return scale.value * SIZE;
   });
 
+  const maxX = useDerivedValue(() => {
+    return SCREEN_WIDTH - animatedSize.value;
+  });
+
+  const maxY = useDerivedValue(() => {
+    return SCREEN_HEIGHT - animatedSize.value;
+  });
+
   const pan = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
@@ -46,19 +54,16 @@ export default () => {
       prevTranslationY.value = translationY.value;
     })
     .onUpdate(event => {
-      const maxTranslateX = SCREEN_WIDTH - animatedSize.value;
-
-      const maxTranslateY = SCREEN_HEIGHT - animatedSize.value;
-
       translationX.value = clamp(
         prevTranslationX.value + event.translationX,
         0,
-        maxTranslateX,
+        maxX.value,
       );
+
       translationY.value = clamp(
         prevTranslationY.value + event.translationY,
         0,
-        maxTranslateY,
+        maxY.value,
       );
     })
     .runOnJS(true);
@@ -88,8 +93,8 @@ export default () => {
 
   const origin = useDerivedValue(() => {
     return {
-      x: SCREEN_WIDTH / 2 - animatedSize.value / 2 / animatedSize.value / 2,
-      y: SCREEN_HEIGHT / 2 - animatedSize.value / 2 / animatedSize.value / 2,
+      x: translationX.value - animatedSize.value / 2 / animatedSize.value / 2,
+      y: translationY.value - animatedSize.value / 2 / animatedSize.value / 2,
     };
   });
 

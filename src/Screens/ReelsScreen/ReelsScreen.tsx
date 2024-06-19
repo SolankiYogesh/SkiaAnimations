@@ -20,7 +20,6 @@ export default () => {
   const height = useHeaderHeight();
   const frame = useSafeAreaFrame();
   const {bottom} = useSafeAreaInsets();
-  console.log('bottom', Platform.OS, Constant.HEIGHT + (bottom || 34));
 
   const currentHeight = useMemo(() => frame.height - height, [height, frame]);
 

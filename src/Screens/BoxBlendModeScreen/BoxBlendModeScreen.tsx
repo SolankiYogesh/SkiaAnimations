@@ -1,11 +1,22 @@
 import {StatusBar, StyleSheet} from 'react-native';
 import React from 'react';
-import {Canvas, Group, Rect, RoundedRect} from '@shopify/react-native-skia';
+import {
+  Canvas,
+  Group,
+  Rect,
+  RoundedRect,
+  Shadow,
+} from '@shopify/react-native-skia';
 import CommonStyle from '@/Theme/CommonStyle';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements';
 import {Colors} from '@/Helpers';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-import {clamp, useSharedValue} from 'react-native-reanimated';
+import {
+  clamp,
+  useDerivedValue,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 
 const SIZE = 100;
 
@@ -14,12 +25,14 @@ export default () => {
   const translationY = useSharedValue(SCREEN_HEIGHT / 2 - SIZE / 2);
   const prevTranslationX = useSharedValue(SCREEN_WIDTH / 2 - SIZE / 2);
   const prevTranslationY = useSharedValue(SCREEN_HEIGHT / 2 - SIZE / 2);
+  const rotate = useSharedValue(0);
 
   const pan = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
       prevTranslationX.value = translationX.value;
       prevTranslationY.value = translationY.value;
+      rotate.value = withSpring(Math.PI / 4);
     })
     .onUpdate(event => {
       const maxTranslateX = SCREEN_WIDTH - SIZE;
@@ -36,7 +49,25 @@ export default () => {
         maxTranslateY,
       );
     })
+    .onEnd(() => {
+      rotate.value = withSpring(0);
+    })
     .runOnJS(true);
+
+  const origin = useDerivedValue(() => {
+    return {
+      x: translationX.value - SIZE / 2 / SIZE / 2,
+      y: translationY.value - SIZE / 2 / SIZE / 2,
+    };
+  });
+
+  const transform = useDerivedValue(() => {
+    return [
+      {
+        rotate: rotate.value,
+      },
+    ];
+  });
 
   return (
     <>
@@ -45,23 +76,19 @@ export default () => {
         <Canvas style={CommonStyle.flex}>
           <Group
             blendMode={'difference'}
-            origin={{
-              x: SCREEN_WIDTH / 2 - SIZE / 2,
-              y: SCREEN_HEIGHT / 2 - SIZE / 2,
-            }}
             layer={
               <RoundedRect
                 x={translationX}
                 y={translationY}
                 width={SIZE}
-                origin={{
-                  x: SCREEN_WIDTH / 2 - SIZE / 2,
-                  y: SCREEN_HEIGHT / 2 - SIZE / 2,
-                }}
+                origin={origin}
                 height={SIZE}
+                transform={transform}
                 color={'white'}
-                r={15}
-              />
+                r={15}>
+                <Shadow dx={5} dy={5} blur={8} color="#f4f4f4" />
+                <Shadow dx={-5} dy={-5} blur={8} color="#f4f4f4" />
+              </RoundedRect>
             }>
             <Rect
               x={0}
