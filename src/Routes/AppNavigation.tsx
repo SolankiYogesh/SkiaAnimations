@@ -7,6 +7,7 @@ import {
   BoxBlendModeScreen,
   ClipMeScreen,
   InitialScreen,
+  ScrollProgressTrackerScreen,
   SkiAnimatedDog,
   TopSheetWithGuard,
   VideoWithBufferSlider,
@@ -74,6 +75,13 @@ export default () => {
           }}
           name={Screens.BoxBlendModeScreen}
           component={BoxBlendModeScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.ScrollProgressTrackerScreen}
+          component={ScrollProgressTrackerScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

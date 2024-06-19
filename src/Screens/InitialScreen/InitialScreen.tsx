@@ -27,12 +27,16 @@ const initialScreenData = [
     screen: Screens.TopSheetWithGuard,
   },
   {
-    title: 'Canvas Draw',
+    title: 'Clip Feature with Gesture',
     screen: Screens.ClipMeScreen,
   },
   {
     title: 'Box Blend',
     screen: Screens.BoxBlendModeScreen,
+  },
+  {
+    title: 'Scroll Tracker',
+    screen: Screens.ScrollProgressTrackerScreen,
   },
 ];
 

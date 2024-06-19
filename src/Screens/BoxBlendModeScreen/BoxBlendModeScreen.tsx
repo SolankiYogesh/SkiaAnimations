@@ -9,7 +9,7 @@ import {clamp, useSharedValue} from 'react-native-reanimated';
 
 const SIZE = 100;
 
-const BoxBlendModeScreen = () => {
+export default () => {
   const translationX = useSharedValue(SCREEN_WIDTH / 2 - SIZE / 2);
   const translationY = useSharedValue(SCREEN_HEIGHT / 2 - SIZE / 2);
   const prevTranslationX = useSharedValue(SCREEN_WIDTH / 2 - SIZE / 2);
@@ -83,7 +83,5 @@ const BoxBlendModeScreen = () => {
     </>
   );
 };
-
-export default BoxBlendModeScreen;
 
 const styles = StyleSheet.create({});

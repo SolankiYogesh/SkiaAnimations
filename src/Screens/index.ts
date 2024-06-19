@@ -9,7 +9,9 @@ import VideoWithBufferSlider from './VideoWithBufferSlider/VideoWithBufferSlider
 import AnimatedLinearScreen from './AnimatedLinearScreen/AnimatedLinearScreen';
 import ClipMeScreen from './ClipMeScreen/ClipMeScreen';
 import BoxBlendModeScreen from './BoxBlendModeScreen/BoxBlendModeScreen';
+import ScrollProgressTrackerScreen from './ScrollProgressTrackerScreen/ScrollProgressTrackerScreen';
 export {
+  ScrollProgressTrackerScreen,
   BoxBlendModeScreen,
   ClipMeScreen,
   AnimatedLinearScreen,

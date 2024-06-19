@@ -11,5 +11,6 @@ enum Screens {
   AnimatedLinearScreen = 'AnimatedLinearScreen',
   ClipMeScreen = 'ClipMeScreen',
   BoxBlendModeScreen = 'BoxBlendModeScreen',
+  ScrollProgressTrackerScreen = 'ScrollProgressTrackerScreen',
 }
 export default Screens;
