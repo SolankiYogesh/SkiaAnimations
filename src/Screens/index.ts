@@ -10,7 +10,9 @@ import AnimatedLinearScreen from './AnimatedLinearScreen/AnimatedLinearScreen';
 import ClipMeScreen from './ClipMeScreen/ClipMeScreen';
 import BoxBlendModeScreen from './BoxBlendModeScreen/BoxBlendModeScreen';
 import ScrollProgressTrackerScreen from './ScrollProgressTrackerScreen/ScrollProgressTrackerScreen';
+import ShaderScreen from './ShaderScreen/ShaderScreen';
 export {
+  ShaderScreen,
   ScrollProgressTrackerScreen,
   BoxBlendModeScreen,
   ClipMeScreen,

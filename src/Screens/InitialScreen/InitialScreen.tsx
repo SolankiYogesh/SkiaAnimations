@@ -38,6 +38,10 @@ const initialScreenData = [
     title: 'Scroll Tracker',
     screen: Screens.ScrollProgressTrackerScreen,
   },
+  {
+    title: 'Shader Effect',
+    screen: Screens.ShaderScreen,
+  },
 ];
 
 export default () => {

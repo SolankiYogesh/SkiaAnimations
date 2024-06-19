@@ -8,6 +8,7 @@ import {
   ClipMeScreen,
   InitialScreen,
   ScrollProgressTrackerScreen,
+  ShaderScreen,
   SkiAnimatedDog,
   TopSheetWithGuard,
   VideoWithBufferSlider,
@@ -33,7 +34,6 @@ export default () => {
           name={Screens.BottomNavigation}
           component={BottomNavigation}
         />
-
         <Stack.Screen
           options={{
             headerShown: false,
@@ -82,6 +82,13 @@ export default () => {
           }}
           name={Screens.ScrollProgressTrackerScreen}
           component={ScrollProgressTrackerScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.ShaderScreen}
+          component={ShaderScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
