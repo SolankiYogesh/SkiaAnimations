@@ -30,6 +30,10 @@ const initialScreenData = [
     title: 'Canvas Draw',
     screen: Screens.ClipMeScreen,
   },
+  {
+    title: 'Box Blend',
+    screen: Screens.BoxBlendModeScreen,
+  },
 ];
 
 export default () => {

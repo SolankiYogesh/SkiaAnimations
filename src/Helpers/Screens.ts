@@ -10,5 +10,6 @@ enum Screens {
   BottomNavigation = 'BottomNavigation',
   AnimatedLinearScreen = 'AnimatedLinearScreen',
   ClipMeScreen = 'ClipMeScreen',
+  BoxBlendModeScreen = 'BoxBlendModeScreen',
 }
 export default Screens;

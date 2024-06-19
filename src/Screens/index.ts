@@ -8,7 +8,9 @@ import SkiAnimatedDog from './SkiAnimatedDog/SkiAnimatedDog';
 import VideoWithBufferSlider from './VideoWithBufferSlider/VideoWithBufferSlider';
 import AnimatedLinearScreen from './AnimatedLinearScreen/AnimatedLinearScreen';
 import ClipMeScreen from './ClipMeScreen/ClipMeScreen';
+import BoxBlendModeScreen from './BoxBlendModeScreen/BoxBlendModeScreen';
 export {
+  BoxBlendModeScreen,
   ClipMeScreen,
   AnimatedLinearScreen,
   VideoWithBufferSlider,

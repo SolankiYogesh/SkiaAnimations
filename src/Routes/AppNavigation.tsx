@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Screens} from '@/Helpers';
 import {
   AnimatedLinearScreen,
+  BoxBlendModeScreen,
   ClipMeScreen,
   InitialScreen,
   SkiAnimatedDog,
@@ -66,6 +67,13 @@ export default () => {
           }}
           name={Screens.ClipMeScreen}
           component={ClipMeScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={Screens.BoxBlendModeScreen}
+          component={BoxBlendModeScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
