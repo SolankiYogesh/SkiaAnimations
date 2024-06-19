@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import React from 'react';
 import {Canvas, Group, Rect, RoundedRect} from '@shopify/react-native-skia';
 import CommonStyle from '@/Theme/CommonStyle';
@@ -27,58 +27,60 @@ const BoxBlendModeScreen = () => {
 
       translationX.value = clamp(
         prevTranslationX.value + event.translationX,
-        -maxTranslateX,
+        0,
         maxTranslateX,
       );
       translationY.value = clamp(
         prevTranslationY.value + event.translationY,
-        -maxTranslateY,
+        0,
         maxTranslateY,
       );
     })
-
     .runOnJS(true);
 
   return (
-    <GestureDetector gesture={pan}>
-      <Canvas style={CommonStyle.flex}>
-        <Group
-          blendMode={'difference'}
-          origin={{
-            x: SCREEN_WIDTH / 2 - SIZE / 2,
-            y: SCREEN_HEIGHT / 2 - SIZE / 2,
-          }}
-          layer={
-            <RoundedRect
-              x={translationX}
-              y={translationY}
-              width={SIZE}
-              origin={{
-                x: SCREEN_WIDTH / 2 - SIZE / 2,
-                y: SCREEN_HEIGHT / 2 - SIZE / 2,
-              }}
-              height={SIZE}
-              color={'white'}
-              r={15}
+    <>
+      <StatusBar translucent backgroundColor={Colors.transparent} />
+      <GestureDetector gesture={pan}>
+        <Canvas style={CommonStyle.flex}>
+          <Group
+            blendMode={'difference'}
+            origin={{
+              x: SCREEN_WIDTH / 2 - SIZE / 2,
+              y: SCREEN_HEIGHT / 2 - SIZE / 2,
+            }}
+            layer={
+              <RoundedRect
+                x={translationX}
+                y={translationY}
+                width={SIZE}
+                origin={{
+                  x: SCREEN_WIDTH / 2 - SIZE / 2,
+                  y: SCREEN_HEIGHT / 2 - SIZE / 2,
+                }}
+                height={SIZE}
+                color={'white'}
+                r={15}
+              />
+            }>
+            <Rect
+              x={0}
+              y={0}
+              width={SCREEN_WIDTH}
+              color={Colors.white}
+              height={SCREEN_HEIGHT / 2}
             />
-          }>
-          <Rect
-            x={0}
-            y={0}
-            width={SCREEN_WIDTH}
-            color={Colors.white}
-            height={SCREEN_HEIGHT / 2}
-          />
-          <Rect
-            x={0}
-            y={SCREEN_HEIGHT / 2}
-            width={SCREEN_WIDTH}
-            color={Colors.black}
-            height={SCREEN_HEIGHT / 2}
-          />
-        </Group>
-      </Canvas>
-    </GestureDetector>
+            <Rect
+              x={0}
+              y={SCREEN_HEIGHT / 2}
+              width={SCREEN_WIDTH}
+              color={Colors.black}
+              height={SCREEN_HEIGHT / 2}
+            />
+          </Group>
+        </Canvas>
+      </GestureDetector>
+    </>
   );
 };
 

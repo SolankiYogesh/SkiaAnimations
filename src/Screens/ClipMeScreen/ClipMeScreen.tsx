@@ -3,37 +3,41 @@ import {
   Canvas,
   Group,
   Image,
-  rect,
-  rrect,
+  Mask,
+  Rect,
+  RoundedRect,
   useImage,
 } from '@shopify/react-native-skia';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import CommonStyle from '@/Theme/CommonStyle';
 
-import {
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-} from '@/Helpers/Measurements';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements';
 import Images from '@/Theme/Images';
-import {useDerivedValue, useSharedValue} from 'react-native-reanimated';
-import {clamp} from 'lodash';
+import {clamp, useDerivedValue, useSharedValue} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 import {Colors} from '@/Helpers';
 
-const size = 256;
-const padding = 32;
-const r = 8;
+const SIZE = 128;
+
+const center = {
+  x: SCREEN_WIDTH / 2 - SIZE / 2,
+  y: SCREEN_HEIGHT / 2 - SIZE / 2,
+};
 
 export default () => {
   const background = useImage(Images.background);
-  const translationX = useSharedValue(0);
-  const translationY = useSharedValue(0);
-  const prevTranslationX = useSharedValue(0);
-  const prevTranslationY = useSharedValue(0);
+  const translationX = useSharedValue(center.x);
+  const translationY = useSharedValue(center.y);
+  const prevTranslationX = useSharedValue(center.x);
+  const prevTranslationY = useSharedValue(center.y);
   const scale = useSharedValue(1);
   const scaleSaved = useSharedValue(0);
+  const rotation = useSharedValue(0);
+  const savedRotation = useSharedValue(0);
+
+  const animatedSize = useDerivedValue(() => {
+    return scale.value * SIZE;
+  });
 
   const pan = Gesture.Pan()
     .minDistance(1)
@@ -42,17 +46,18 @@ export default () => {
       prevTranslationY.value = translationY.value;
     })
     .onUpdate(event => {
-      const maxTranslateX = WINDOW_WIDTH - scale.value * size;
-      const maxTranslateY = WINDOW_HEIGHT - scale.value * size;
+      const maxTranslateX = SCREEN_WIDTH - animatedSize.value;
+
+      const maxTranslateY = SCREEN_HEIGHT - animatedSize.value;
 
       translationX.value = clamp(
         prevTranslationX.value + event.translationX,
-        -maxTranslateX,
+        0,
         maxTranslateX,
       );
       translationY.value = clamp(
         prevTranslationY.value + event.translationY,
-        -maxTranslateY,
+        0,
         maxTranslateY,
       );
     })
@@ -60,28 +65,32 @@ export default () => {
 
   const pitch = Gesture.Pinch()
     .onChange(({scale: s}) => {
-      scale.value = scaleSaved.value + s;
+      scale.value = clamp(scaleSaved.value + s, 0.5, 1.5);
     })
-    .onEnd(evnt => {
-      scaleSaved.value = evnt.scale;
-    });
-  const gesture = Gesture.Race(pan, pitch);
+    .onEnd(event => {
+      scaleSaved.value = clamp(event.scale, 0.5, 1.5);
+    })
+    .runOnJS(true);
 
-  const roundedRect = useDerivedValue(() => {
-    return rrect(
-      rect(
-        translationX.value,
-        translationY.value,
-        scale.value * size - padding * 2,
-        scale.value * size - padding * 2,
-      ),
-      r,
-      r,
-    );
-  });
+  const rotateGesture = Gesture.Rotation()
+    .onUpdate(event => {
+      rotation.value = savedRotation.value + event.rotation;
+    })
+    .onEnd(() => {
+      savedRotation.value = rotation.value;
+    });
+
+  const gesture = Gesture.Race(pan, pitch, rotateGesture);
 
   const transform = useDerivedValue(() => {
-    return [{scale: scale.value}];
+    return [{rotate: rotation.value}];
+  });
+
+  const origin = useDerivedValue(() => {
+    return {
+      x: SCREEN_WIDTH / 2 - animatedSize.value / 2 / animatedSize.value / 2,
+      y: SCREEN_HEIGHT / 2 - animatedSize.value / 2 / animatedSize.value / 2,
+    };
   });
 
   return (
@@ -89,10 +98,28 @@ export default () => {
       <>
         <StatusBar translucent backgroundColor={Colors.transparent} />
         <Canvas style={CommonStyle.flex}>
-          <Group
-            transform={transform}
-            origin={{x: (scale.value * size) / 2, y: (scale.value * size) / 2}}
-            clip={roundedRect}>
+          <Mask
+            mask={
+              <Group>
+                <Rect
+                  x={0}
+                  y={0}
+                  height={SCREEN_HEIGHT}
+                  width={SCREEN_WIDTH}
+                  opacity={0.2}
+                  color={'black'}
+                />
+                <RoundedRect
+                  width={animatedSize}
+                  height={animatedSize}
+                  x={translationX}
+                  y={translationY}
+                  transform={transform}
+                  origin={origin}
+                  r={20}
+                />
+              </Group>
+            }>
             <Image
               x={0}
               y={0}
@@ -101,7 +128,7 @@ export default () => {
               image={background}
               fit="cover"
             />
-          </Group>
+          </Mask>
         </Canvas>
       </>
     </GestureDetector>
