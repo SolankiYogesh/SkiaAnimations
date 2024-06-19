@@ -14,11 +14,12 @@ import {
   VideoWithBufferSlider,
 } from '@/Screens';
 import BottomNavigation from './BottomNavigation';
+import BootSplash from 'react-native-bootsplash';
 
 const Stack = createNativeStackNavigator();
 export default () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={() => BootSplash.hide({fade: true})}>
       <Stack.Navigator>
         <Stack.Screen
           options={{
