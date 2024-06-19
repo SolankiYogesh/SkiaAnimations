@@ -1,0 +1,197 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:react-native/all"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "react-native",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier",
+    "simple-import-sort"
+  ],
+  "rules": {
+    "react/display-name": "off",
+    "react-native/no-unused-styles": "error",
+    "react-native/no-inline-styles": "error",
+    "react-native/no-color-literals": "error",
+    "react-native/no-raw-text": "error",
+    "comma-dangle": ["error"],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [["^react", "^@?\\w"]]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    "n/handle-callback-err": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/no-extra-semi": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "no-unsafe-optional-chaining": "off",
+    "prefer-promise-reject-errors": ["off"],
+    "no-loop-func": ["off"],
+    "no-nested-ternary": ["off"],
+    "import/prefer-default-export": ["off"],
+    "no-async-promise-executor": ["off"],
+    "consistent-return": ["off"],
+    "max-len": ["off"],
+    "no-param-reassign": ["off"],
+
+    "arrow-parens": ["off", "as-needed"],
+    "array-callback-return": ["off"],
+    "implicit-arrow-linebreak:": ["off"],
+    "no-unused-expressions": ["off"],
+    "react/no-access-state-in-setstate": ["off"],
+    "no-new-object": ["off"],
+    "no-return-assign": ["off"],
+    "@typescript-eslint/consistent-type-assertions": "off",
+    "react/static-property-placement": ["off"],
+
+    "default-case": ["off"],
+    "react-native/split-platform-components": ["off"],
+
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "no-console": ["error"],
+    "import/no-cycle": ["error", {"maxDepth": 1}],
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/no-unresolved": ["error"],
+    "prefer-destructuring": ["error"],
+    "prefer-object-spread": ["error"],
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {"props": "always", "children": "always", "propElementValues": "always"}
+    ],
+    "react-native/sort-styles": "off",
+    "react/sort-comp": ["error"],
+    "react/jsx-boolean-value": ["error"],
+    "jsx-quotes": ["error"],
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "import/order": ["off"],
+    "@typescript-eslint/promise-function-async": "off",
+    "linebreak-style": ["off"],
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "promise-function-async": "off",
+    "no-use-before-define": "off",
+    "sort-vars": "error",
+    "react/button-has-type": "off",
+    "react/prop-types": "error",
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "error",
+    "react/react-in-jsx-scope": "error",
+    "react/jsx-uses-react": "error",
+    "react/no-danger-with-children": "error",
+
+    "jsx-a11y/alt-text": "off",
+    "react/jsx-props-no-spreading": "off",
+
+    "import/no-duplicates": "error",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-one-expression-per-line": ["off"],
+    "no-unused-vars": "error",
+    "unused-imports/no-unused-imports": "off",
+    "unused-imports/no-unused-vars": "off",
+    "no-plusplus": "off",
+    "eqeqeq": "error",
+
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/click-events-have-key-event": "off",
+    "react/jsx-no-bind": "off",
+    "object-curly-newline": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-underscore-dangle": "off",
+    "react/no-unstable-nested-components": "off",
+    "camelcase": "off",
+
+    "operator-linebreak": "off",
+    "semi": [2, "never"],
+    "indent": ["off"],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 2,
+        "maxEOF": 1
+      }
+    ],
+    "global-require": 0,
+    "arrow-body-style": ["off"],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+
+    "no-alert": "off",
+    "import/extensions": "off",
+    "default-param-last": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/no-empty-interface": "error",
+    "@typescript-eslint/restrict-plus-operands": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/class-literal-property-style": "error",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/no-extraneous-class": "off",
+    "multiline-ternary": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error", 
+
+    "function-paren-newline": "off",
+    "react/jsx-wrap-multilines": "off",
+    "@typescript-eslint/indent": "off",
+    "react/destructuring-assignment": "off",
+    "import/no-named-as-default": "off",
+    "new-cap": "off",
+    "no-new": "off",
+    "react/no-danger": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
