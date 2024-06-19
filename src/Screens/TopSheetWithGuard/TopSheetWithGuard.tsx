@@ -1,10 +1,12 @@
-import {Button, View} from 'react-native';
-import React, {useRef} from 'react';
-import AppContainer from '@/Components/AppContianer';
-import TopSheet, {TopSheetRef} from './Components/TopSheet';
-import CommentItem from '@/Components/CommentItem';
-import {randomData} from '@/data/RandomData';
-import {CommonStyle} from '@/Helpers';
+import React, {useRef} from 'react'
+import {Button, View} from 'react-native'
+
+import TopSheet, {TopSheetRef} from './Components/TopSheet'
+import AppContainer from '@/Components/AppContianer'
+import CommentItem from '@/Components/CommentItem'
+import {randomData} from '@/data/RandomData'
+import {CommonStyle} from '@/Helpers'
+
 const parsedData = {
   id: +randomData[0][0],
   name: String(randomData[0][1]),
@@ -12,10 +14,10 @@ const parsedData = {
   body:
     randomData[0][2] +
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut alias tenetur dolorum vero blanditiis eveniet nisi, mollitia ipsa repudiandae! Tempore facilis quaerat',
-  image: 'https://picsum.photos/200/300',
-};
+  image: 'https://picsum.photos/200/300'
+}
 const TopSheetWithGuard = () => {
-  const sheetRef = useRef<TopSheetRef>(null);
+  const sheetRef = useRef<TopSheetRef>(null)
   return (
     <AppContainer>
       <TopSheet ref={sheetRef}>
@@ -23,10 +25,10 @@ const TopSheetWithGuard = () => {
       </TopSheet>
 
       <View style={CommonStyle.centerFlex}>
-        <Button title="Open" onPress={() => sheetRef.current?.toggle()} />
+        <Button title={'Open'} onPress={() => sheetRef.current?.toggle()} />
       </View>
     </AppContainer>
-  );
-};
+  )
+}
 
-export default TopSheetWithGuard;
+export default TopSheetWithGuard

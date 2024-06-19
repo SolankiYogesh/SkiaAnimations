@@ -1,19 +1,9 @@
-import React, {useEffect} from 'react';
-import {
-  Canvas,
-  LinearGradient,
-  Rect,
-  interpolateColors,
-  vec,
-} from '@shopify/react-native-skia';
-import CommonStyle from '@/Theme/CommonStyle';
-import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements';
-import {
-  useDerivedValue,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
+import React, {useEffect} from 'react'
+import {useDerivedValue, useSharedValue, withRepeat, withTiming} from 'react-native-reanimated'
+import {Canvas, interpolateColors, LinearGradient, Rect, vec} from '@shopify/react-native-skia'
+
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements'
+import CommonStyle from '@/Theme/CommonStyle'
 
 const startColors = [
   '#E100FF',
@@ -36,40 +26,35 @@ const startColors = [
   '#FF6666', // Light Red
   '#FFD700', // Gold
   '#32CD32', // Lime Green
-  '#4682B4',
-]; // Steel Blue];
-const endColors = startColors.reverse();
+  '#4682B4'
+] // Steel Blue];
+const endColors = startColors.reverse()
 
 export default () => {
-  const animatedValue = useSharedValue(0);
+  const animatedValue = useSharedValue(0)
   useEffect(() => {
     animatedValue.value = withRepeat(
       withTiming(startColors.length - 1, {
-        duration: 5000,
+        duration: 5000
       }),
       -1,
-      true,
-    );
+      true
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const gradientColors = useDerivedValue(() => {
     return [
       interpolateColors(animatedValue.value, [0, 1, 2, 3], startColors),
       interpolateColors(animatedValue.value, [0, 1, 2, 3], endColors),
       interpolateColors(animatedValue.value, [0, 1, 2, 3], startColors),
-      interpolateColors(animatedValue.value, [0, 1, 2, 3], endColors),
-    ];
-  });
+      interpolateColors(animatedValue.value, [0, 1, 2, 3], endColors)
+    ]
+  })
 
   return (
     <Canvas style={CommonStyle.flex}>
-      <Rect
-        height={SCREEN_HEIGHT}
-        width={SCREEN_WIDTH}
-        x={0}
-        y={0}
-        color={'#4B70F5'}>
+      <Rect height={SCREEN_HEIGHT} width={SCREEN_WIDTH} x={0} y={0} color={'#4B70F5'}>
         <LinearGradient
           start={vec(0, 0)}
           end={vec(SCREEN_WIDTH, SCREEN_HEIGHT)}
@@ -77,5 +62,5 @@ export default () => {
         />
       </Rect>
     </Canvas>
-  );
-};
+  )
+}

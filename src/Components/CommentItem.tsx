@@ -1,29 +1,28 @@
-import {Image, StyleSheet, Text} from 'react-native';
-import React from 'react';
+import React from 'react'
+import {Image, StyleSheet, Text} from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
+import Animated from 'react-native-reanimated'
+import Carousel from 'react-native-reanimated-carousel'
+import {widthPx} from 'measurements'
+import {randomColor} from 'utils'
 
-import LinearGradient from 'react-native-linear-gradient';
-
-import Carousel from 'react-native-reanimated-carousel';
-import {randomColor} from 'utils';
-import {CommonStyle} from '@/Helpers';
-import {widthPx} from 'measurements';
-import Animated from 'react-native-reanimated';
+import {CommonStyle} from '@/Helpers'
 
 export interface Comment {
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-  image: string | string[];
+  id: number
+  name: string
+  email: string
+  body: string
+  image: string | string[]
 }
 interface CommentItemProps {
-  item: Comment;
+  item: Comment
 }
 export default (props: CommentItemProps) => {
-  const {item} = props;
+  const {item} = props
 
   return (
-    <LinearGradient colors={randomColor()} style={[styles.itemContainer]}>
+    <LinearGradient colors={randomColor()} style={styles.itemContainer}>
       <Text style={styles.nameTextStyle}>
         {item.name + '   '}
         <Text style={styles.emailTextStyle}>{item.email}</Text>
@@ -35,9 +34,9 @@ export default (props: CommentItemProps) => {
           loop
           width={widthPx(90)}
           height={200}
-          autoPlay={true}
+          autoPlay
           panGestureHandlerProps={{
-            activeOffsetX: [-10, 10],
+            activeOffsetX: [-10, 10]
           }}
           data={item.image}
           scrollAnimationDuration={500}
@@ -45,7 +44,7 @@ export default (props: CommentItemProps) => {
             <Image
               style={styles.imageStyle}
               source={{
-                uri: ItemR,
+                uri: ItemR
               }}
             />
           )}
@@ -54,13 +53,13 @@ export default (props: CommentItemProps) => {
         <Animated.Image
           style={styles.imageStyle}
           source={{
-            uri: item.image as string,
+            uri: item.image as string
           }}
         />
       )}
     </LinearGradient>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -68,26 +67,26 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     rowGap: 10,
-    ...CommonStyle.shadow,
+    ...CommonStyle.shadow
   },
   imageStyle: {
     width: widthPx(90),
     height: 200,
     padding: 10,
-    borderRadius: 20,
+    borderRadius: 20
   },
   nameTextStyle: {
     fontSize: 18,
     fontWeight: 'bold',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   emailTextStyle: {
     fontSize: 14,
     fontWeight: '600',
-    marginLeft: 10,
+    marginLeft: 10
   },
   bodyTextStyle: {
     fontSize: 13,
-    fontWeight: '300',
-  },
-});
+    fontWeight: '300'
+  }
+})

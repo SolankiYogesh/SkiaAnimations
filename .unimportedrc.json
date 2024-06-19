@@ -1,0 +1,16 @@
+{
+  "ignoreUnresolved": [
+    [
+      "@react-native-masked-view/masked-view",
+      [
+        "node_modules/@react-navigation/elements/lib/commonjs/MaskedViewNative.js"
+      ]
+    ]
+  ],
+  "ignoreUnused": [
+    "react",
+    "react-dom",
+    "react-native"
+  ],
+  "ignoreUnimported": []
+}

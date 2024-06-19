@@ -1,41 +1,41 @@
-import React, {useCallback} from 'react';
+import React, {useCallback} from 'react'
+import {StyleSheet} from 'react-native'
+import {Button, TouchableRipple} from 'react-native-paper'
+import Animated, {FadeInDown} from 'react-native-reanimated'
+import {useNavigation} from '@react-navigation/native'
 
-import {useNavigation} from '@react-navigation/native';
-import {Screens} from '@/Helpers';
-import {Button, TouchableRipple} from 'react-native-paper';
-import {StyleSheet} from 'react-native';
-import Animated, {FadeInDown} from 'react-native-reanimated';
+import {Screens} from '@/Helpers'
 
 interface CardProps {
-  title: string;
-  screen: Screens;
-  index: number;
+  title: string
+  screen: Screens
+  index: number
 }
 
-const AnimatedTouchableRipple =
-  Animated.createAnimatedComponent(TouchableRipple);
+const AnimatedTouchableRipple = Animated.createAnimatedComponent(TouchableRipple)
 
 export default (props: CardProps) => {
-  const {title, screen, index} = props;
-  const navigation = useNavigation();
+  const {title, screen, index} = props
+  const navigation = useNavigation()
 
   const onPress = useCallback(() => {
-    navigation.navigate(screen as never);
-  }, [navigation, screen]);
+    navigation.navigate(screen as never)
+  }, [navigation, screen])
 
   return (
     <AnimatedTouchableRipple
       entering={FadeInDown.delay(index * 50).springify()}
-      style={styles.container}>
-      <Button mode="contained-tonal" onPress={onPress}>
+      style={styles.container}
+    >
+      <Button mode={'contained-tonal'} onPress={onPress}>
         {title}
       </Button>
     </AnimatedTouchableRipple>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
-  },
-});
+    marginVertical: 10
+  }
+})

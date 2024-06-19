@@ -56,12 +56,7 @@ export const randomData = [
   [55, 'Shelley', 'Rolfson', 'Shelley.Rolfson77@hotmail.com'],
   [56, 'Bethany', 'Weber', 'Bethany_Weber@gmail.com'],
   [57, 'Kristi', 'Ankunding', 'Kristi_Ankunding@gmail.com'],
-  [
-    58,
-    'Marianne',
-    'Bernier-Rutherford',
-    'Marianne_Bernier-Rutherford88@gmail.com',
-  ],
+  [58, 'Marianne', 'Bernier-Rutherford', 'Marianne_Bernier-Rutherford88@gmail.com'],
   [59, 'Jerry', 'Ebert', 'Jerry.Ebert@yahoo.com'],
   [60, 'Dominick', 'Powlowski', 'Dominick.Powlowski@yahoo.com'],
   [61, 'Terry', 'Kunde', 'Terry_Kunde53@gmail.com'],
@@ -738,12 +733,7 @@ export const randomData = [
   [732, 'Antonio', 'Powlowski', 'Antonio92@gmail.com'],
   [733, 'Cindy', 'Osinski', 'Cindy48@hotmail.com'],
   [734, 'Hubert', 'Sanford', 'Hubert_Sanford98@gmail.com'],
-  [
-    735,
-    'Jordan',
-    "O'Reilly-Oberbrunner",
-    'Jordan.OReilly-Oberbrunner82@gmail.com',
-  ],
+  [735, 'Jordan', "O'Reilly-Oberbrunner", 'Jordan.OReilly-Oberbrunner82@gmail.com'],
   [736, 'Emilio', 'Koch', 'Emilio5@yahoo.com'],
   [737, 'Rochelle', 'Bergstrom', 'Rochelle61@hotmail.com'],
   [738, 'Ellis', 'McDermott', 'Ellis78@yahoo.com'],
@@ -766,12 +756,7 @@ export const randomData = [
   [755, 'Olive', 'Quitzon', 'Olive_Quitzon@hotmail.com'],
   [756, 'Sylvester', 'Berge-Ernser', 'Sylvester.Berge-Ernser@hotmail.com'],
   [757, 'Camille', 'Franey', 'Camille_Franey@yahoo.com'],
-  [
-    758,
-    'Gerald',
-    "Oberbrunner-O'Connell",
-    'Gerald.Oberbrunner-OConnell58@hotmail.com',
-  ],
+  [758, 'Gerald', "Oberbrunner-O'Connell", 'Gerald.Oberbrunner-OConnell58@hotmail.com'],
   [759, 'Alexandra', 'Farrell', 'Alexandra_Farrell@yahoo.com'],
   [760, 'Meredith', 'Barrows', 'Meredith83@hotmail.com'],
   [761, 'Gordon', 'Mertz', 'Gordon_Mertz@gmail.com'],
@@ -1013,5 +998,5 @@ export const randomData = [
   [997, 'Wm', 'Homenick', 'Wm_Homenick@hotmail.com'],
   [998, 'Elsa', 'Conn', 'Elsa67@yahoo.com'],
   [999, 'Jon', 'Lynch', 'Jon_Lynch97@hotmail.com'],
-  [1000, 'Gilbert', 'Greenfelder', 'Gilbert_Greenfelder@gmail.com'],
-];
+  [1000, 'Gilbert', 'Greenfelder', 'Gilbert_Greenfelder@gmail.com']
+]

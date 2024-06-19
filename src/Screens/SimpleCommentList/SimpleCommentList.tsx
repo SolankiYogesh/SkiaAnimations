@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
+import {FlashList} from '@shopify/flash-list'
 
-import {FlashList} from '@shopify/flash-list';
-import {randomData} from '@/data/RandomData';
-import CommentItem, {Comment} from '@/Components/CommentItem';
-import AppContainer from '@/Components/AppContianer';
+import AppContainer from '@/Components/AppContianer'
+import CommentItem, {Comment} from '@/Components/CommentItem'
+import {randomData} from '@/data/RandomData'
 
 export default () => {
-  const [data, setData] = React.useState<Comment[]>([]);
+  const [data, setData] = React.useState<Comment[]>([])
 
   useEffect(() => {
-    const parsedData = randomData.map(item => {
+    const parsedData = randomData.map((item) => {
       return {
         id: item[0],
         name: item[1],
@@ -17,11 +17,11 @@ export default () => {
         body:
           item[2] +
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut alias tenetur dolorum vero blanditiis eveniet nisi, mollitia ipsa repudiandae! Tempore facilis quaerat',
-        image: 'https://picsum.photos/200/300',
-      };
-    });
-    setData(parsedData as Comment[]);
-  }, []);
+        image: 'https://picsum.photos/200/300'
+      }
+    })
+    setData(parsedData as Comment[])
+  }, [])
 
   return (
     <AppContainer>
@@ -31,5 +31,5 @@ export default () => {
         renderItem={({item}) => <CommentItem item={item} />}
       />
     </AppContainer>
-  );
-};
+  )
+}

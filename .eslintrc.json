@@ -35,7 +35,7 @@
     "react-native/no-unused-styles": "error",
     "react-native/no-inline-styles": "error",
     "react-native/no-color-literals": "error",
-    "react-native/no-raw-text": "error",
+    "react-native/no-raw-text": "off",
     "comma-dangle": ["error"],
     "simple-import-sort/imports": [
       "error",
@@ -175,7 +175,7 @@
     "@typescript-eslint/no-extraneous-class": "off",
     "multiline-ternary": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error", 
+    "react-hooks/exhaustive-deps": "error",
 
     "function-paren-newline": "off",
     "react/jsx-wrap-multilines": "off",

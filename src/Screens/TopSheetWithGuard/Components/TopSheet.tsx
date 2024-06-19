@@ -1,99 +1,96 @@
-import {Colors} from '@/Helpers';
-import React, {forwardRef, memo, useCallback, useImperativeHandle} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import React, {forwardRef, memo, useCallback, useImperativeHandle} from 'react'
+import {Dimensions, StyleSheet, View} from 'react-native'
+import {Gesture, GestureDetector} from 'react-native-gesture-handler'
 import Animated, {
   interpolate,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+  withTiming
+} from 'react-native-reanimated'
 
-const {height: SCREEN_HEIGHT, width: W_WIDTH} = Dimensions.get('window');
+import {Colors} from '@/Helpers'
+
+const {height: SCREEN_HEIGHT, width: W_WIDTH} = Dimensions.get('window')
 
 interface TopSheetProps {
-  children: React.ReactNode;
-  onClose?: () => void;
+  children: React.ReactNode
+  onClose?: () => void
 }
-const PADDINGVERTICAL = 20 * 2;
+const PADDINGVERTICAL = 20 * 2
 export interface TopSheetRef {
-  toggle: (isClose?: boolean) => void;
+  toggle: (isClose?: boolean) => void
 }
 const TopSheet = forwardRef<TopSheetRef, TopSheetProps>((props, ref) => {
-  const {children, onClose} = props;
+  const {children, onClose} = props
 
-  const translateY = useSharedValue(0);
-  const height = useSharedValue(0);
-  const isBackDrop = useSharedValue(0);
+  const translateY = useSharedValue(0)
+  const height = useSharedValue(0)
+  const isBackDrop = useSharedValue(0)
   useImperativeHandle(ref, () => ({
     toggle: (isClose = false) => {
-      if (
-        isClose ||
-        (translateY.value === height.value && height.value > 0) ||
-        isBackDrop.value
-      ) {
-        close();
+      if (isClose || (translateY.value === height.value && height.value > 0) || isBackDrop.value) {
+        close()
       } else if (!isBackDrop.value) {
-        open();
+        open()
       }
-    },
-  }));
+    }
+  }))
 
   const open = useCallback(() => {
     isBackDrop.value = withTiming(
       1,
       {
-        duration: 50,
+        duration: 50
       },
-      isFinished => {
+      (isFinished) => {
         if (isFinished) {
-          translateY.value = withTiming(height.value);
+          translateY.value = withTiming(height.value)
         }
-      },
-    );
-  }, [isBackDrop, translateY, height.value]);
+      }
+    )
+  }, [isBackDrop, translateY, height.value])
 
   const close = useCallback(() => {
-    translateY.value = withTiming(0, {}, isFinished => {
-      isBackDrop.value = 0;
+    translateY.value = withTiming(0, {}, (isFinished) => {
+      isBackDrop.value = 0
       if (isFinished && onClose) {
-        runOnJS(onClose)();
+        runOnJS(onClose)()
       }
-    });
-  }, [isBackDrop, onClose, translateY]);
+    })
+  }, [isBackDrop, onClose, translateY])
 
-  const context = useSharedValue({y: 0});
+  const context = useSharedValue({y: 0})
   const gesture = Gesture.Pan()
     .onStart(() => {
-      context.value = {y: translateY.value};
+      context.value = {y: translateY.value}
     })
-    .onUpdate(event => {
-      const x = event.translationY + context.value.y;
-      translateY.value = Math.min(x, height.value);
+    .onUpdate((event) => {
+      const x = event.translationY + context.value.y
+      translateY.value = Math.min(x, height.value)
     })
     .onEnd(() => {
       if (translateY.value < height.value / 2) {
-        runOnJS(close)();
+        runOnJS(close)()
       } else {
-        runOnJS(open)();
+        runOnJS(open)()
       }
-    });
+    })
 
   const rBottomSheetStyle = useAnimatedStyle(() => {
     return {
-      transform: [{translateY: translateY.value}],
+      transform: [{translateY: translateY.value}]
       // paddingTop: top,
-    };
-  });
+    }
+  })
 
   const animatedBackdrop = useAnimatedStyle(() => {
     return {
       opacity: interpolate(translateY.value, [0, height.value], [0, 1]),
 
-      display: isBackDrop.value === 0 ? 'none' : 'flex',
-    };
-  }, []);
+      display: isBackDrop.value === 0 ? 'none' : 'flex'
+    }
+  }, [])
 
   return (
     <Animated.View style={[styles.backdropStyle, animatedBackdrop]}>
@@ -104,21 +101,22 @@ const TopSheet = forwardRef<TopSheetRef, TopSheetProps>((props, ref) => {
       />
       <GestureDetector gesture={gesture}>
         <Animated.View
-          onLayout={event => {
+          onLayout={(event) => {
             if (height.value === 0) {
-              height.value = event.nativeEvent.layout.height + PADDINGVERTICAL;
+              height.value = event.nativeEvent.layout.height + PADDINGVERTICAL
             }
           }}
-          style={[styles.bottomSheetContainer, rBottomSheetStyle]}>
+          style={[styles.bottomSheetContainer, rBottomSheetStyle]}
+        >
           {children}
           <View style={styles.line} />
         </Animated.View>
       </GestureDetector>
     </Animated.View>
-  );
-});
+  )
+})
 
-export default memo(TopSheet);
+export default memo(TopSheet)
 
 const styles = StyleSheet.create({
   bottomSheetContainer: {
@@ -132,13 +130,13 @@ const styles = StyleSheet.create({
     shadowColor: Colors.black,
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 3
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 6,
     bottom: SCREEN_HEIGHT + PADDINGVERTICAL,
-    paddingVertical: 20,
+    paddingVertical: 20
   },
   line: {
     width: 75,
@@ -148,18 +146,18 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 2,
     position: 'absolute',
-    bottom: 0,
+    bottom: 0
   },
 
   backdropStyle: {
     width: W_WIDTH,
     height: SCREEN_HEIGHT,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: Colors.backdrop,
     opacity: 0,
     position: 'absolute',
     left: 0,
     right: 0,
-    zIndex: 999999,
+    zIndex: 999999
   },
   backdrop: {
     position: 'absolute',
@@ -168,6 +166,6 @@ const styles = StyleSheet.create({
     width: W_WIDTH,
     height: SCREEN_HEIGHT,
     opacity: 0,
-    zIndex: -1,
-  },
-});
+    zIndex: -1
+  }
+})

@@ -1,76 +1,73 @@
-import {Dimensions} from 'react-native';
-import React, {useCallback} from 'react';
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import Screens from '../Helpers/Screens';
+import React, {useCallback} from 'react'
+import {Dimensions} from 'react-native'
+import {Gesture, GestureDetector} from 'react-native-gesture-handler'
+import {useSharedValue, withTiming} from 'react-native-reanimated'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs'
+import {Canvas} from '@shopify/react-native-skia'
 
-import CommonStyle from '../Helpers/CommonStyle';
-import {Canvas} from '@shopify/react-native-skia';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useSharedValue, withTiming} from 'react-native-reanimated';
-import TabBox from './TabBox';
-import Images from '@/Theme/Images';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-import LinearBackground from './LinearBackground';
-import Constant from '@/Helpers/Constant';
+import CommonStyle from '../Helpers/CommonStyle'
+import Screens from '../Helpers/Screens'
+import LinearBackground from './LinearBackground'
+import TabBox from './TabBox'
+import Constant from '@/Helpers/Constant'
+import Images from '@/Theme/Images'
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 const RouteType = {
   [Screens.SimpleCommentList]: {
     title: 'Home',
     icon: Images.home,
-    fill: Images.home_fill,
+    fill: Images.home_fill
   },
   [Screens.CarouselCommentList]: {
     title: 'Feed',
     icon: Images.feed,
-    fill: Images.feed_fill,
+    fill: Images.feed_fill
   },
   [Screens.ReelsScreen]: {
     title: 'Shop',
     icon: Images.shop,
-    fill: Images.shop_fill,
+    fill: Images.shop_fill
   },
   [Screens.AnimatedListUserScreen]: {
     title: 'Setting',
     icon: Images.setting,
-    fill: Images.setting_fill,
-  },
-} as any;
+    fill: Images.setting_fill
+  }
+} as any
 
-const SLIDER_POS =
-  Constant.TAB_BAR_WIDTH - Constant.TAB_BAR_WIDTH / 2 - Constant.MARGIN * 2;
+const SLIDER_POS = Constant.TAB_BAR_WIDTH - Constant.TAB_BAR_WIDTH / 2 - Constant.MARGIN * 2
 
 export default (props: BottomTabBarProps) => {
-  const {navigation, state} = props;
-  const {bottom} = useSafeAreaInsets();
+  const {navigation, state} = props
+  const {bottom} = useSafeAreaInsets()
 
-  const animatedSlider = useSharedValue(SLIDER_POS);
+  const animatedSlider = useSharedValue(SLIDER_POS)
 
   const getPressTabName = useCallback(
     (offset: number) => {
-      const index = Math.floor(offset / Constant.TAB_BAR_WIDTH);
+      const index = Math.floor(offset / Constant.TAB_BAR_WIDTH)
 
       if (index >= 0 && index < 4) {
-        const route = state.routes[index].name;
-        return {route, index};
+        const route = state.routes[index].name
+        return {route, index}
       } else {
-        return {route: '', index: -1}; // Handle out-of-bounds index gracefully
+        return {route: '', index: -1} // Handle out-of-bounds index gracefully
       }
     },
-    [state.routes],
-  );
+    [state.routes]
+  )
   const gesture = Gesture.Tap()
     .runOnJS(true)
-    .onEnd(event => {
-      const {route, index} = getPressTabName(event.x);
+    .onEnd((event) => {
+      const {route, index} = getPressTabName(event.x)
       if (index > -1) {
-        animatedSlider.value = withTiming(
-          index * Constant.TAB_BAR_WIDTH + SLIDER_POS,
-        );
-        navigation.navigate(route);
+        animatedSlider.value = withTiming(index * Constant.TAB_BAR_WIDTH + SLIDER_POS)
+        navigation.navigate(route)
       }
-    });
+    })
 
   return (
     <GestureDetector gesture={gesture}>
@@ -79,34 +76,31 @@ export default (props: BottomTabBarProps) => {
           CommonStyle.row,
           CommonStyle.absolute,
           {
-            width: width,
+            width,
             height: Constant.HEIGHT,
-            bottom: bottom || 34,
-          },
-        ]}>
+            bottom: bottom || 34
+          }
+        ]}
+      >
         <LinearBackground />
 
         {state.routes.map((route, index) => {
-          const type = route.name as any;
-          const isFocused = state.index === index;
+          const type = route.name as any
+          const isFocused = state.index === index
 
           return (
             <TabBox
               animatedSlider={animatedSlider}
               icon={isFocused ? RouteType[type].fill : RouteType[type].icon}
               isActive={isFocused}
-              key={index}
+              key={route.key}
               size={Constant.ICON_SIZE}
-              x={
-                index * Constant.TAB_BAR_WIDTH +
-                Constant.ICON_SIZE +
-                Constant.MARGIN
-              }
+              x={index * Constant.TAB_BAR_WIDTH + Constant.ICON_SIZE + Constant.MARGIN}
               width={Constant.TAB_BAR_WIDTH}
             />
-          );
+          )
         })}
       </Canvas>
     </GestureDetector>
-  );
-};
+  )
+}

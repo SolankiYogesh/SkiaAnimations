@@ -9,5 +9,5 @@ export default {
   setting_fill: require('../Resource/Images/setting_fill.png'),
   background: require('../Resource/Images/background.jpg'),
   dog: require('../Resource/Images/dog.jpg'),
-  bin: require('../Resource/Images/bin.png'),
-};
+  bin: require('../Resource/Images/bin.png')
+}

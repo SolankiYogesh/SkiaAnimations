@@ -1,20 +1,19 @@
-import React, {useEffect} from 'react';
-
-import CommonStyle from '@/Theme/CommonStyle';
-
+import React, {useEffect} from 'react'
+import {Platform, StyleSheet, View} from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
+import {Text} from 'react-native-paper'
 import Animated, {
   Easing,
   interpolateColor,
   useAnimatedProps,
   useSharedValue,
   withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
-import {Platform, StyleSheet, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {Text} from 'react-native-paper';
+  withTiming
+} from 'react-native-reanimated'
 
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+import CommonStyle from '@/Theme/CommonStyle'
+
+const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient)
 const startColors = [
   '#E100FF',
   '#c471ed',
@@ -36,8 +35,8 @@ const startColors = [
   '#FF6666', // Light Red
   '#FFD700', // Gold
   '#32CD32', // Lime Green
-  '#4682B4',
-]; // Steel Blue];
+  '#4682B4'
+] // Steel Blue];
 const endColors = [
   '#4682B4',
   '#32CD32',
@@ -59,58 +58,34 @@ const endColors = [
   '#12c2e9',
   '#8E2DE2',
   '#c471ed',
-  '#E100FF',
-];
+  '#E100FF'
+]
 export default () => {
-  const animatedValue = useSharedValue(0);
+  const animatedValue = useSharedValue(0)
   useEffect(() => {
     animatedValue.value = withRepeat(
       withTiming(1, {
         duration: 5000,
-        easing: Easing.linear,
+        easing: Easing.linear
       }),
       -1,
-      true,
-    );
+      true
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const animatedProps = useAnimatedProps(() => {
     return {
       colors: [
-        interpolateColor(
-          animatedValue.value,
-          [0, 1],
-          [startColors[20], endColors[20]],
-        ),
-        interpolateColor(
-          animatedValue.value,
-          [0, 1],
-          [startColors[1], endColors[1]],
-        ),
-        interpolateColor(
-          animatedValue.value,
-          [0, 1],
-          [startColors[2], endColors[2]],
-        ),
-        interpolateColor(
-          animatedValue.value,
-          [0, 1],
-          [startColors[3], endColors[3]],
-        ),
-        interpolateColor(
-          animatedValue.value,
-          [0, 1],
-          [startColors[4], endColors[4]],
-        ),
-        interpolateColor(
-          animatedValue.value,
-          [0, 1],
-          [startColors[5], endColors[5]],
-        ),
-      ],
-    };
-  });
+        interpolateColor(animatedValue.value, [0, 1], [startColors[20], endColors[20]]),
+        interpolateColor(animatedValue.value, [0, 1], [startColors[1], endColors[1]]),
+        interpolateColor(animatedValue.value, [0, 1], [startColors[2], endColors[2]]),
+        interpolateColor(animatedValue.value, [0, 1], [startColors[3], endColors[3]]),
+        interpolateColor(animatedValue.value, [0, 1], [startColors[4], endColors[4]]),
+        interpolateColor(animatedValue.value, [0, 1], [startColors[5], endColors[5]])
+      ]
+    }
+  })
 
   return (
     <View style={CommonStyle.flex}>
@@ -122,18 +97,18 @@ export default () => {
       {Platform.OS === 'android' && (
         <View style={[CommonStyle.centerFlex, StyleSheet.absoluteFillObject]}>
           <Text style={styles.warningStyle}>
-            Linear Gradient Animation Not support in android  😭
+            {'Linear Gradient Animation Not support in android  😭'}
           </Text>
         </View>
       )}
     </View>
-  );
-};
+  )
+}
 const styles = StyleSheet.create({
   warningStyle: {
     fontWeight: 'bold',
     fontSize: 20,
     zIndex: 10000,
-    textAlign: 'center',
-  },
-});
+    textAlign: 'center'
+  }
+})
