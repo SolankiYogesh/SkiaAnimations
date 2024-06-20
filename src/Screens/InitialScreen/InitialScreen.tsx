@@ -42,6 +42,10 @@ const initialScreenData = [
   {
     title: 'Shader Effect',
     screen: Screens.ShaderScreen
+  },
+  {
+    title: 'Camera',
+    screen: Screens.CameraScreen
   }
 ]
 

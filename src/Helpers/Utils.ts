@@ -1,3 +1,7 @@
+import RNFS from 'react-native-fs'
+
+import Constant from './Constant'
+
 const randomColor = () => {
   const colors = [
     ['#009FFF', '#A5888D'],
@@ -24,4 +28,21 @@ const getSlideTime = (percentage: number, duration: number) => {
   return Number.isNaN(progress) || !Number.isFinite(progress) ? 0 : progress
 }
 
-export {getPercentage, getSlideTime, hexadecimal, randomColor}
+const createFolder = (fileName: string) => {
+  return new Promise<string | boolean>(async (resolve) => {
+    try {
+      const path = Constant.Dir
+      RNFS.mkdir(path)
+        .then(() => {
+          resolve(path + '/' + fileName)
+        })
+        .catch((error) => {
+          resolve(false)
+        })
+    } catch (_) {
+      resolve(false)
+    }
+  })
+}
+
+export {createFolder, getPercentage, getSlideTime, hexadecimal, randomColor}

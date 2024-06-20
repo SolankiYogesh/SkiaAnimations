@@ -6,6 +6,8 @@ const Colors = {
   backdrop: 'rgba(0,0,0,0.5)',
   darkShade312: '#312E31',
   darkShade211: '#211E21',
-  darkShade1B1: '#1B191C'
+  darkShade1B1: '#1B191C',
+  darkShade352: '#352413',
+  lighte7d: '#e7d5c4'
 }
 export default Colors

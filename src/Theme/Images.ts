@@ -9,5 +9,8 @@ export default {
   setting_fill: require('../Resource/Images/setting_fill.png'),
   background: require('../Resource/Images/background.jpg'),
   dog: require('../Resource/Images/dog.jpg'),
-  bin: require('../Resource/Images/bin.png')
+  bin: require('../Resource/Images/bin.png'),
+  close: require('../Resource/Images/close.png'),
+  touch: require('../Resource/Images/touch.png'),
+  reverse: require('../Resource/Images/reverse.png')
 }

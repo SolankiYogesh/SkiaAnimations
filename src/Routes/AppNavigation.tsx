@@ -8,6 +8,7 @@ import {Screens} from '@/Helpers'
 import {
   AnimatedLinearScreen,
   BoxBlendModeScreen,
+  CameraScreen,
   ClipMeScreen,
   InitialScreen,
   ScrollProgressTrackerScreen,
@@ -91,6 +92,13 @@ export default () => {
           }}
           name={Screens.ShaderScreen}
           component={ShaderScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false
+          }}
+          name={Screens.CameraScreen}
+          component={CameraScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
