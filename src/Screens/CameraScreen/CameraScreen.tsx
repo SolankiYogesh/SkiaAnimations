@@ -168,7 +168,7 @@ export default () => {
           <Pressable onPress={onPresCapture} style={styles.cameraIconContainer}>
             <View style={styles.cameraIcon} />
           </Pressable>
-          {images.length > 0 ?(
+          {images.length > 0 ? (
             <Pressable
               onPress={() => navigation.navigate(Screens.GalleryScreen)}
               style={styles.photoContianer}
@@ -180,15 +180,11 @@ export default () => {
                 style={styles.photoImageStyle}
               />
             </Pressable>
-          ): <View
-      
-          style={styles.photoContianer}
-        >
-          <View
-          
-            style={styles.photoImageStyle}
-          />
-        </View>}
+          ) : (
+            <View style={styles.photoContianer}>
+              <View style={styles.photoImageStyle} />
+            </View>
+          )}
         </View>
       </View>
     )
