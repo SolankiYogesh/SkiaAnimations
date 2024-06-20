@@ -4,6 +4,7 @@ import BoxBlendModeScreen from './BoxBlendModeScreen/BoxBlendModeScreen'
 import CameraScreen from './CameraScreen/CameraScreen'
 import CarouselCommentList from './CarouselCommentList/CarouselCommentList'
 import ClipMeScreen from './ClipMeScreen/ClipMeScreen'
+import GalleryScreen from './GalleryScreen/GalleryScreen'
 import InitialScreen from './InitialScreen/InitialScreen'
 import ReelsScreen from './ReelsScreen/ReelsScreen'
 import ScrollProgressTrackerScreen from './ScrollProgressTrackerScreen/ScrollProgressTrackerScreen'
@@ -20,6 +21,7 @@ export {
   CameraScreen,
   CarouselCommentList,
   ClipMeScreen,
+  GalleryScreen,
   InitialScreen,
   ReelsScreen,
   ScrollProgressTrackerScreen,

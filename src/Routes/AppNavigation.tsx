@@ -10,6 +10,7 @@ import {
   BoxBlendModeScreen,
   CameraScreen,
   ClipMeScreen,
+  GalleryScreen,
   InitialScreen,
   ScrollProgressTrackerScreen,
   ShaderScreen,
@@ -99,6 +100,13 @@ export default () => {
           }}
           name={Screens.CameraScreen}
           component={CameraScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false
+          }}
+          name={Screens.GalleryScreen}
+          component={GalleryScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

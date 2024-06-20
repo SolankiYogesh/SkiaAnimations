@@ -13,6 +13,7 @@ enum Screens {
   BoxBlendModeScreen = 'BoxBlendModeScreen',
   ScrollProgressTrackerScreen = 'ScrollProgressTrackerScreen',
   ShaderScreen = 'ShaderScreen',
-  CameraScreen = 'CameraScreen'
+  CameraScreen = 'CameraScreen',
+  GalleryScreen = 'GalleryScreen'
 }
 export default Screens

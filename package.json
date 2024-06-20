@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force && rm -rf android/.gradle android/.idea android/app/build android/build && rm -rf node_modules",
     "postinstall": "npx pod-install && npx sort-package-json",
     "ios": "react-native run-ios",
     "lint": "eslint .",

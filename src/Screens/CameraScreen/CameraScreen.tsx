@@ -25,7 +25,7 @@ import {
 import {useIsFocused, useNavigation} from '@react-navigation/native'
 
 import TopCameraBackground from './TopCameraBackground'
-import {Colors} from '@/Helpers'
+import {Colors, Screens} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 import {WINDOW_WIDTH} from '@/Helpers/Measurements'
 import Permission from '@/Helpers/Permission'
@@ -61,7 +61,7 @@ export default () => {
     }
   ])
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<any>()
 
   const onPresCapture = useCallback(async () => {
     const isStorage = await Permission.getStoragePermission()
@@ -163,13 +163,16 @@ export default () => {
             }}
             style={styles.zoomContainer}
           >
-            <AnimateableText animatedProps={animatedTextProps} />
+            <AnimateableText style={styles.textStyle} animatedProps={animatedTextProps} />
           </Pressable>
           <Pressable onPress={onPresCapture} style={styles.cameraIconContainer}>
             <View style={styles.cameraIcon} />
           </Pressable>
-          {images.length > 0 && (
-            <Pressable onPress={() => {}} style={styles.photoContianer}>
+          {images.length > 0 ?(
+            <Pressable
+              onPress={() => navigation.navigate(Screens.GalleryScreen)}
+              style={styles.photoContianer}
+            >
               <Image
                 source={{
                   uri: images[0]
@@ -177,7 +180,15 @@ export default () => {
                 style={styles.photoImageStyle}
               />
             </Pressable>
-          )}
+          ): <View
+      
+          style={styles.photoContianer}
+        >
+          <View
+          
+            style={styles.photoImageStyle}
+          />
+        </View>}
         </View>
       </View>
     )
@@ -185,7 +196,7 @@ export default () => {
     top,
     device?.hasTorch,
     device?.maxZoom,
-    navigation.goBack,
+    navigation,
     bottom,
     animatedTextProps,
     onPresCapture,
@@ -290,5 +301,8 @@ const styles = StyleSheet.create({
     height: 65,
     borderRadius: 10,
     overflow: 'hidden'
+  },
+  textStyle: {
+    color: Colors.white
   }
 })
