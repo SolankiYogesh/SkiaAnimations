@@ -1,4 +1,5 @@
 import RNFS from 'react-native-fs'
+import _ from 'lodash'
 
 import Constant from './Constant'
 
@@ -50,4 +51,19 @@ const random = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-export {createFolder, getPercentage, getSlideTime, hexadecimal, random, randomColor}
+const getFileNameFroUri = (uri: string) => {
+  return uri.split('/').pop()
+}
+
+const sortUris = (uris: string[]) => {
+  return _.orderBy(
+    uris,
+    (item) => {
+      const timeStamp = getFileNameFroUri(item)?.replace('skia', '')
+      return timeStamp
+    },
+    ['desc']
+  )
+}
+
+export {createFolder, getPercentage, getSlideTime, hexadecimal, random, randomColor, sortUris}

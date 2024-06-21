@@ -29,7 +29,7 @@ import {Colors, Screens} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 import {WINDOW_WIDTH} from '@/Helpers/Measurements'
 import Permission from '@/Helpers/Permission'
-import {createFolder} from '@/Helpers/Utils'
+import {createFolder, sortUris} from '@/Helpers/Utils'
 import {useAppState} from '@/Hooks'
 import CommonStyle from '@/Theme/CommonStyle'
 import Images from '@/Theme/Images'
@@ -95,7 +95,7 @@ export default () => {
         if (isStorage) {
           const files = await RNFS.readDir(Constant.Dir)
           const photos = files.map((file) => 'file://' + file.path)
-          setImages(photos)
+          setImages(sortUris(photos))
         } else {
           ToastAndroid.show('Storage Permission Required', ToastAndroid.SHORT)
           openSettings()

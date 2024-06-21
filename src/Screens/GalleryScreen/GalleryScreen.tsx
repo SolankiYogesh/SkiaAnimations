@@ -1,23 +1,17 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
-import {FlatList, Image as RnImage, Platform, Pressable, StyleSheet, View} from 'react-native'
+import {FlatList, Platform, StyleSheet, View} from 'react-native'
 import RNFS from 'react-native-fs'
 import {openSettings} from 'react-native-permissions'
-import Animated, {
-  FadeInLeft,
-  useDerivedValue,
-  useSharedValue,
-  withRepeat,
-  withTiming
-} from 'react-native-reanimated'
+import {useDerivedValue, useSharedValue, withRepeat, withTiming} from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {Canvas, Fill, Group, ImageShader, Shader, Skia, useImage} from '@shopify/react-native-skia'
-import _ from 'lodash'
 
-import {Colors} from '@/Helpers'
+import AnimatedImageModal, {ModalType} from './AnimatedImageModal'
+import GalleryItem from './Components/GalleryItem'
 import Constant from '@/Helpers/Constant'
 import {SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_WIDTH} from '@/Helpers/Measurements'
 import Permission from '@/Helpers/Permission'
-import {random} from '@/Helpers/Utils'
+import {random, sortUris} from '@/Helpers/Utils'
 import Images from '@/Theme/Images'
 import Transitions from '@/Transitions'
 
@@ -27,13 +21,15 @@ const availableSpace = WINDOW_WIDTH - 20 - (numColumns - 1) * gap
 const itemSize = availableSpace / numColumns
 
 const source = Skia.RuntimeEffect.Make(Transitions(random(0, 2)))
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
+
 export default () => {
   const progress = useSharedValue(0)
   const [images, setImages] = useState<string[]>([])
+
   const {top} = useSafeAreaInsets()
   const image1 = useImage(Images.image1)
   const image2 = useImage(Images.image2)
+  const [selectedImage, setSelectedImage] = useState<ModalType | null>(null)
 
   const viewRef = useRef<View>(null)
 
@@ -54,8 +50,8 @@ export default () => {
         if (response) {
           const files = await RNFS.readDir(Constant.Dir)
           const photos = files.map((file) => 'file://' + file.path)
-          const sort = _.orderBy(photos, '', ['desc'])
-          setImages(sort)
+
+          setImages(sortUris(photos))
         } else {
           openSettings()
         }
@@ -67,18 +63,7 @@ export default () => {
 
   const renderItem = useCallback((uri: string, index: number) => {
     return (
-      <AnimatedPressable
-        entering={FadeInLeft.delay(index * 300)}
-        style={[
-          styles.itemContainer,
-          {
-            width: itemSize,
-            height: itemSize
-          }
-        ]}
-      >
-        <RnImage borderRadius={20} resizeMode={'cover'} source={{uri}} style={styles.imageStyle} />
-      </AnimatedPressable>
+      <GalleryItem index={index} itemSize={itemSize} onSelectImage={setSelectedImage} uri={uri} />
     )
   }, [])
 
@@ -115,7 +100,9 @@ export default () => {
           showsHorizontalScrollIndicator={false}
         />
       )}
-
+      {selectedImage && (
+        <AnimatedImageModal onClose={() => setSelectedImage(null)} item={selectedImage} />
+      )}
       <Canvas style={[StyleSheet.absoluteFill, styles.canvasContainer]}>
         <Group>
           <Fill>
@@ -147,17 +134,6 @@ export default () => {
 }
 
 const styles = StyleSheet.create({
-  imageStyle: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 20
-  },
-  itemContainer: {
-    borderRadius: 20,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: Colors.white
-  },
   containerStyle: {
     flex: 1,
     paddingHorizontal: 10
