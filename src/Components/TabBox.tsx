@@ -1,6 +1,14 @@
 import React from 'react'
 import {SharedValue, useDerivedValue} from 'react-native-reanimated'
-import {Circle, Group, ImageSVG, RoundedRect, Skia} from '@shopify/react-native-skia'
+import {
+  Circle,
+  Group,
+  ImageSVG,
+  RoundedRect,
+  Skia,
+  SweepGradient,
+  vec
+} from '@shopify/react-native-skia'
 
 import Constant from '@/Helpers/Constant'
 
@@ -28,7 +36,9 @@ export default (props: TabBoxProps) => {
   return (
     <Group>
       <RoundedRect x={animatedSlider} y={0} width={width / 2} height={5} r={32} color={'white'} />
-      <Circle blendMode={'overlay'} cx={cx} cy={size + 2} r={r} color={'lightblue'} />
+      <Circle blendMode={'overlay'} cx={cx} cy={size + 2} r={r} color={'lightblue'}>
+        <SweepGradient c={vec(128, 128)} colors={['cyan', 'magenta', 'yellow', 'cyan']} />
+      </Circle>
       <ImageSVG style={'fill'} svg={imageSVG} width={size} height={size} x={x} y={size / 2} />
     </Group>
   )
