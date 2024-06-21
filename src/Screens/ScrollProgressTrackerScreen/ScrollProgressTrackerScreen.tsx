@@ -1,5 +1,5 @@
 import React from 'react'
-import {StatusBar, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {
   Colors,
   DebugInstructions,
@@ -23,18 +23,11 @@ export default () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle={'dark-content'}
-        translucent
-        backgroundColor={styles.container.backgroundColor}
-      />
       <Animated.ScrollView
         ref={scrollRef}
-        scrollEventThrottle={16}
         onLayout={(event) => {
           height.value = event.nativeEvent.layout.height
         }}
-        contentInsetAdjustmentBehavior={'automatic'}
         style={styles.container}
       >
         <Header />

@@ -1,41 +1,52 @@
-import React, {useCallback} from 'react'
-import {StyleSheet} from 'react-native'
-import {Button, TouchableRipple} from 'react-native-paper'
-import Animated, {FadeInDown} from 'react-native-reanimated'
-import {useNavigation} from '@react-navigation/native'
+import React from 'react'
+import {Platform} from 'react-native'
+import {Group, matchFont, RoundedRect, Shadow, Text} from '@shopify/react-native-skia'
 
-import {Screens} from '@/Helpers'
+import {Colors} from '@/Helpers'
+import {WINDOW_WIDTH} from '@/Helpers/Measurements'
 
 interface CardProps {
   title: string
-  screen: Screens
+  isInner: boolean
   index: number
 }
 
-const AnimatedTouchableRipple = Animated.createAnimatedComponent(TouchableRipple)
+const fontFamily = Platform.select({ios: 'Helvetica', default: 'serif'})
+const fontStyle = {
+  fontFamily,
+  fontSize: 14,
+  fontStyle: 'italic',
+  fontWeight: 'bold'
+}
+const font = matchFont(fontStyle as any)
+
+const MARGIN = 20
+const HEIGHT = 50
+const WIDTH = WINDOW_WIDTH * 0.8
 
 export default (props: CardProps) => {
-  const {title, screen, index} = props
-  const navigation = useNavigation()
-
-  const onPress = useCallback(() => {
-    navigation.navigate(screen as never)
-  }, [navigation, screen])
+  const {title, isInner, index} = props
 
   return (
-    <AnimatedTouchableRipple
-      entering={FadeInDown.delay(index * 50).springify()}
-      style={styles.container}
-    >
-      <Button mode={'contained-tonal'} onPress={onPress}>
-        {title}
-      </Button>
-    </AnimatedTouchableRipple>
+    <Group>
+      <RoundedRect
+        x={WINDOW_WIDTH / 2 - WIDTH / 2}
+        y={index * (HEIGHT + MARGIN)}
+        width={WIDTH}
+        height={HEIGHT}
+        r={32}
+        color={'lightblue'}
+      >
+        <Shadow dx={12} dy={12} blur={25} color={'#3e7d87'} inner={isInner} />
+        <Shadow dx={-12} dy={-12} blur={25} color={'#87d4e0'} inner={isInner} />
+      </RoundedRect>
+      <Text
+        x={WINDOW_WIDTH / 2 - WIDTH / 2 + WIDTH / 2 - font.measureText(title).width / 2}
+        y={index * (HEIGHT + MARGIN) + (HEIGHT + MARGIN / 2) / 2}
+        color={Colors.black}
+        text={title}
+        font={font}
+      />
+    </Group>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginVertical: 10
-  }
-})

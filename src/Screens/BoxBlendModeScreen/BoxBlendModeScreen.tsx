@@ -1,5 +1,4 @@
 import React from 'react'
-import {StatusBar} from 'react-native'
 import {Gesture, GestureDetector} from 'react-native-gesture-handler'
 import {clamp, useDerivedValue, useSharedValue, withSpring} from 'react-native-reanimated'
 import {Canvas, Group, Rect, RoundedRect, Shadow} from '@shopify/react-native-skia'
@@ -52,45 +51,36 @@ export default () => {
   })
 
   return (
-    <>
-      <StatusBar translucent backgroundColor={Colors.transparent} />
-      <GestureDetector gesture={pan}>
-        <Canvas style={CommonStyle.flex}>
-          <Group
-            blendMode={'difference'}
-            layer={
-              <RoundedRect
-                x={translationX}
-                y={translationY}
-                width={SIZE}
-                origin={origin}
-                height={SIZE}
-                transform={transform}
-                color={'white'}
-                r={15}
-              >
-                <Shadow dx={5} dy={5} blur={8} color={'#f4f4f4'} />
-                <Shadow dx={-5} dy={-5} blur={8} color={'#f4f4f4'} />
-              </RoundedRect>
-            }
-          >
-            <Rect
-              x={0}
-              y={0}
-              width={SCREEN_WIDTH}
-              color={Colors.white}
-              height={SCREEN_HEIGHT / 2}
-            />
-            <Rect
-              x={0}
-              y={SCREEN_HEIGHT / 2}
-              width={SCREEN_WIDTH}
-              color={Colors.black}
-              height={SCREEN_HEIGHT / 2}
-            />
-          </Group>
-        </Canvas>
-      </GestureDetector>
-    </>
+    <GestureDetector gesture={pan}>
+      <Canvas style={CommonStyle.flex}>
+        <Group
+          blendMode={'difference'}
+          layer={
+            <RoundedRect
+              x={translationX}
+              y={translationY}
+              width={SIZE}
+              origin={origin}
+              height={SIZE}
+              transform={transform}
+              color={'white'}
+              r={15}
+            >
+              <Shadow dx={5} dy={5} blur={8} color={'#f4f4f4'} />
+              <Shadow dx={-5} dy={-5} blur={8} color={'#f4f4f4'} />
+            </RoundedRect>
+          }
+        >
+          <Rect x={0} y={0} width={SCREEN_WIDTH} color={Colors.white} height={SCREEN_HEIGHT / 2} />
+          <Rect
+            x={0}
+            y={SCREEN_HEIGHT / 2}
+            width={SCREEN_WIDTH}
+            color={Colors.black}
+            height={SCREEN_HEIGHT / 2}
+          />
+        </Group>
+      </Canvas>
+    </GestureDetector>
   )
 }

@@ -1,19 +1,17 @@
 import React from 'react'
-import {StatusBar, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Button} from 'react-native-paper'
 import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated'
 
 import AnimatedLinearGradient from './Components/AnimatedLinearGradient'
 import AnimatedSkiaGradient from './Components/AnimatedSkiaGradient'
 import AppContainer from '@/Components/AppContianer'
-import {Colors} from '@/Helpers'
 import CommonStyle from '@/Theme/CommonStyle'
 
 export default () => {
   const [isNormal, setIsNormal] = React.useState(true)
   return (
     <AppContainer style={styles.container}>
-      <StatusBar translucent backgroundColor={Colors.transparent} />
       <Animated.View
         entering={ZoomIn}
         exiting={ZoomOut}

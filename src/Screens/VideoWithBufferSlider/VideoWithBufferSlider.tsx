@@ -4,6 +4,7 @@ import {Slider} from 'react-native-awesome-slider'
 import {useSharedValue, withTiming} from 'react-native-reanimated'
 import Video, {VideoRef} from 'react-native-video'
 
+import AppHeader from '@/Components/AppHeader'
 import {CommonStyle} from '@/Helpers'
 import {getPercentage, getSlideTime} from '@/Helpers/Utils'
 
@@ -18,6 +19,7 @@ export default () => {
 
   return (
     <View style={CommonStyle.flex}>
+      <AppHeader title={'Video With Buffer Slider'} />
       <Video
         source={{
           uri: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'

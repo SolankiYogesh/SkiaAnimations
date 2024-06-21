@@ -1,14 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  StatusBar,
-  StyleSheet,
-  Text,
-  ToastAndroid,
-  View
-} from 'react-native'
+import {Dimensions, Image, Pressable, StyleSheet, Text, ToastAndroid, View} from 'react-native'
 import AnimateableText from 'react-native-animateable-text'
 import RNFS from 'react-native-fs'
 import {Button} from 'react-native-paper'
@@ -202,7 +193,6 @@ export default () => {
 
   return (
     <View style={CommonStyle.flex}>
-      <StatusBar translucent barStyle={'light-content'} backgroundColor={Colors.transparent} />
       {!device ? (
         <View style={CommonStyle.centerFlex}>
           <Text>{'Camera not supported'}</Text>

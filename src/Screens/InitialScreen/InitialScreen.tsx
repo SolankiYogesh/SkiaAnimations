@@ -1,10 +1,14 @@
-import React from 'react'
-import {StyleSheet} from 'react-native'
-import Animated from 'react-native-reanimated'
+import React, {useCallback} from 'react'
+import {Gesture, GestureDetector} from 'react-native-gesture-handler'
+import {useNavigation} from '@react-navigation/native'
+import {Canvas, Fill} from '@shopify/react-native-skia'
+import _ from 'lodash'
 
 import Card from './Card'
 import AppContainer from '@/Components/AppContianer'
+import AppHeader from '@/Components/AppHeader'
 import {Screens} from '@/Helpers'
+import CommonStyle from '@/Theme/CommonStyle'
 
 const initialScreenData = [
   {
@@ -50,24 +54,45 @@ const initialScreenData = [
 ]
 
 export default () => {
+  const navigation = useNavigation()
+
+  const getPressTabName = useCallback((offset: number) => {
+    const index = Math.floor(offset / 70)
+
+    if (index >= 0 && index < initialScreenData.length) {
+      const route = initialScreenData[index].screen
+      return {route, index}
+    } else {
+      return {route: '', index: -1} // Handle out-of-bounds index gracefully
+    }
+  }, [])
+
+  const gesture = Gesture.Tap()
+    .runOnJS(true)
+    .onStart((event) => {
+      const data = getPressTabName(event.y)
+
+      if (data.index > -1) {
+        navigation.navigate(data.route as never)
+      }
+    })
+
   return (
-    <AppContainer style={styles.container}>
-      <Animated.FlatList
-        data={initialScreenData}
-        keyExtractor={(item) => item.screen}
-        renderItem={({item, index}) => (
-          <Card index={index} screen={item.screen} title={item.title} />
-        )}
-      />
+    <AppContainer style={CommonStyle.flex}>
+      <AppHeader title={'Explore'} color={'#1eb6cd'} />
+      <GestureDetector gesture={gesture}>
+        <Canvas style={CommonStyle.flex}>
+          <Fill color={'#1eb6cd'} />
+          {_.map(initialScreenData, (item, index) => (
+            <Card
+              index={index + 0.1}
+              isInner={index % 2 === 0}
+              key={item.screen}
+              title={item.title}
+            />
+          ))}
+        </Canvas>
+      </GestureDetector>
     </AppContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    rowGap: 20,
-    paddingVertical: 20,
-    paddingHorizontal: 10
-  }
-})

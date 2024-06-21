@@ -1,5 +1,4 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import {StatusBar} from 'react-native'
 import {
   runOnJS,
   useDerivedValue,
@@ -9,7 +8,6 @@ import {
 } from 'react-native-reanimated'
 import {Canvas, Fill, Group, ImageShader, Shader, Skia, useImage} from '@shopify/react-native-skia'
 
-import {Colors} from '@/Helpers'
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements'
 import {random} from '@/Helpers/Utils'
 import CommonStyle from '@/Theme/CommonStyle'
@@ -53,34 +51,31 @@ export default () => {
   }))
 
   return (
-    <>
-      <StatusBar translucent backgroundColor={Colors.transparent} />
-      <Canvas style={CommonStyle.flex}>
-        <Group>
-          <Fill>
-            {s && (
-              <Shader uniforms={uniforms} source={s}>
-                <ImageShader
-                  image={image1}
-                  fit={'cover'}
-                  width={SCREEN_WIDTH}
-                  height={SCREEN_HEIGHT}
-                  x={0}
-                  y={0}
-                />
-                <ImageShader
-                  image={image2}
-                  fit={'cover'}
-                  width={SCREEN_WIDTH}
-                  height={SCREEN_HEIGHT}
-                  x={0}
-                  y={0}
-                />
-              </Shader>
-            )}
-          </Fill>
-        </Group>
-      </Canvas>
-    </>
+    <Canvas style={CommonStyle.flex}>
+      <Group>
+        <Fill>
+          {s && (
+            <Shader uniforms={uniforms} source={s}>
+              <ImageShader
+                image={image1}
+                fit={'cover'}
+                width={SCREEN_WIDTH}
+                height={SCREEN_HEIGHT}
+                x={0}
+                y={0}
+              />
+              <ImageShader
+                image={image2}
+                fit={'cover'}
+                width={SCREEN_WIDTH}
+                height={SCREEN_HEIGHT}
+                x={0}
+                y={0}
+              />
+            </Shader>
+          )}
+        </Fill>
+      </Group>
+    </Canvas>
   )
 }

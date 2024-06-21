@@ -2,7 +2,7 @@ import React from 'react'
 import {StyleSheet} from 'react-native'
 import {BackdropBlur, Canvas, Fill} from '@shopify/react-native-skia'
 
-import {WINDOW_HEIGHT} from '@/Helpers/Measurements'
+import {WINDOW_WIDTH} from '@/Helpers/Measurements'
 
 export default () => {
   return (
@@ -10,7 +10,7 @@ export default () => {
       <BackdropBlur
         blendMode={'hardLight'}
         blur={25}
-        clip={{x: 0, y: 0, width: WINDOW_HEIGHT, height: 100}}
+        clip={{x: 0, y: 0, width: WINDOW_WIDTH, height: 100}}
       >
         <Fill color={'rgba(0, 0, 0, 0.7)'} />
       </BackdropBlur>

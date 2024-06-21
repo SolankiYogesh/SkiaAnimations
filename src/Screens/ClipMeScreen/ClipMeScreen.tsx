@@ -1,10 +1,8 @@
 import React from 'react'
-import {StatusBar} from 'react-native'
 import {Gesture, GestureDetector} from 'react-native-gesture-handler'
 import {clamp, useDerivedValue, useSharedValue} from 'react-native-reanimated'
 import {Canvas, Group, Image, Mask, Rect, RoundedRect, useImage} from '@shopify/react-native-skia'
 
-import {Colors} from '@/Helpers'
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements'
 import CommonStyle from '@/Theme/CommonStyle'
 import Images from '@/Theme/Images'
@@ -84,43 +82,40 @@ export default () => {
 
   return (
     <GestureDetector gesture={gesture}>
-      <>
-        <StatusBar translucent backgroundColor={Colors.transparent} />
-        <Canvas style={CommonStyle.flex}>
-          <Mask
-            mask={
-              <Group>
-                <Rect
-                  x={0}
-                  y={0}
-                  height={SCREEN_HEIGHT}
-                  width={SCREEN_WIDTH}
-                  opacity={0.2}
-                  color={'black'}
-                />
-                <RoundedRect
-                  width={animatedSize}
-                  height={animatedSize}
-                  x={translationX}
-                  y={translationY}
-                  transform={transform}
-                  origin={origin}
-                  r={20}
-                />
-              </Group>
-            }
-          >
-            <Image
-              x={0}
-              y={0}
-              width={SCREEN_WIDTH}
-              height={SCREEN_HEIGHT}
-              image={background}
-              fit={'cover'}
-            />
-          </Mask>
-        </Canvas>
-      </>
+      <Canvas style={CommonStyle.flex}>
+        <Mask
+          mask={
+            <Group>
+              <Rect
+                x={0}
+                y={0}
+                height={SCREEN_HEIGHT}
+                width={SCREEN_WIDTH}
+                opacity={0.2}
+                color={'black'}
+              />
+              <RoundedRect
+                width={animatedSize}
+                height={animatedSize}
+                x={translationX}
+                y={translationY}
+                transform={transform}
+                origin={origin}
+                r={20}
+              />
+            </Group>
+          }
+        >
+          <Image
+            x={0}
+            y={0}
+            width={SCREEN_WIDTH}
+            height={SCREEN_HEIGHT}
+            image={background}
+            fit={'cover'}
+          />
+        </Mask>
+      </Canvas>
     </GestureDetector>
   )
 }

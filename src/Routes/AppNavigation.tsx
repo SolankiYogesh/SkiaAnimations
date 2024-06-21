@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
 import BottomNavigation from './BottomNavigation'
+import AppHeader from '@/Components/AppHeader'
 import {Screens} from '@/Helpers'
 import {
   AnimatedLinearScreen,
@@ -25,15 +26,13 @@ export default () => {
     <NavigationContainer onReady={() => BootSplash.hide({fade: true})}>
       <Stack.Navigator>
         <Stack.Screen
-          options={{
-            headerTitle: 'Explore'
-          }}
+          options={{headerShown: false}}
           name={Screens.Initial}
           component={InitialScreen}
         />
         <Stack.Screen
           options={{
-            headerTitle: 'List'
+            header: () => <AppHeader title={'List'} />
           }}
           name={Screens.BottomNavigation}
           component={BottomNavigation}
@@ -47,7 +46,7 @@ export default () => {
         />
         <Stack.Screen
           options={{
-            headerTitle: 'Video Buffering'
+            headerShown: false
           }}
           name={Screens.VideoWithBufferSlider}
           component={VideoWithBufferSlider}
