@@ -5,7 +5,7 @@ import {FlashList} from '@shopify/flash-list'
 
 import VideoItem from './Components/VideoItem'
 import {ViewabilityTrackerFlashList} from './Components/ViewabilityTrackerFlashList'
-import AppContainer from '@/Components/AppContianer'
+import AppContainer from '@/Components/AppContainer'
 import data, {TVideoItem} from '@/data/VideoData'
 import Constant from '@/Helpers/Constant'
 

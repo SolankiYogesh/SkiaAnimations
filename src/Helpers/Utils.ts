@@ -2,6 +2,7 @@ import RNFS from 'react-native-fs'
 import _ from 'lodash'
 
 import Constant from './Constant'
+import Images from '@/Theme/Images'
 
 const randomColor = () => {
   const colors = [
@@ -66,4 +67,24 @@ const sortUris = (uris: string[]) => {
   )
 }
 
-export {createFolder, getPercentage, getSlideTime, hexadecimal, random, randomColor, sortUris}
+const randomImage = function () {
+  const obj: any = {
+    image1: Images.image1,
+    image2: Images.image2,
+    background: Images.background,
+    dog: Images.dog
+  }
+  const keys = Object.keys(obj)
+  return obj[keys[(keys.length * Math.random()) << 0]]
+}
+
+export {
+  createFolder,
+  getPercentage,
+  getSlideTime,
+  hexadecimal,
+  random,
+  randomColor,
+  randomImage,
+  sortUris
+}

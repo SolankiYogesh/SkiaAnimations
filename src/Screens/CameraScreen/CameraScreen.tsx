@@ -1,8 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {Dimensions, Image, Pressable, StyleSheet, Text, ToastAndroid, View} from 'react-native'
+import {Dimensions, Image, Pressable, StyleSheet, ToastAndroid, View} from 'react-native'
 import AnimateableText from 'react-native-animateable-text'
 import RNFS from 'react-native-fs'
-import {Button} from 'react-native-paper'
 import {openSettings} from 'react-native-permissions'
 import Animated, {useAnimatedProps, useSharedValue, withTiming} from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
@@ -16,6 +15,8 @@ import {
 import {useIsFocused, useNavigation} from '@react-navigation/native'
 
 import TopCameraBackground from './TopCameraBackground'
+import AppButton from '@/Components/AppButton'
+import AppContainer from '@/Components/AppContainer'
 import {Colors, Screens} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 import {WINDOW_WIDTH} from '@/Helpers/Measurements'
@@ -192,16 +193,19 @@ export default () => {
   ])
 
   return (
-    <View style={CommonStyle.flex}>
+    <AppContainer>
       {!device ? (
         <View style={CommonStyle.centerFlex}>
-          <Text>{'Camera not supported'}</Text>
+          <AppButton
+            onPress={() => openSettings()}
+            isBorder={false}
+            disabled
+            title={'Camera not supported'}
+          />
         </View>
       ) : !isPermissionGranted ? (
         <View style={CommonStyle.centerFlex}>
-          <Button onPress={() => openSettings()} mode={'outlined'} compact>
-            {'Allow Permission'}
-          </Button>
+          <AppButton onPress={() => openSettings()} title={'Allow Permission'} />
         </View>
       ) : (
         <ReanimatedCamera
@@ -221,7 +225,7 @@ export default () => {
         />
       )}
       {device && renderControls}
-    </View>
+    </AppContainer>
   )
 }
 const styles = StyleSheet.create({

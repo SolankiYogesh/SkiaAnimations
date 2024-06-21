@@ -1,6 +1,13 @@
 import React from 'react'
 import {Gesture, GestureDetector} from 'react-native-gesture-handler'
-import {clamp, useDerivedValue, useSharedValue, withSpring} from 'react-native-reanimated'
+import {
+  clamp,
+  useDerivedValue,
+  useSharedValue,
+  withRepeat,
+  withSpring,
+  withTiming
+} from 'react-native-reanimated'
 import {Canvas, Group, Rect, RoundedRect, Shadow} from '@shopify/react-native-skia'
 
 import {Colors} from '@/Helpers'
@@ -19,9 +26,13 @@ export default () => {
   const pan = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
-      prevTranslationX.value = translationX.value
-      prevTranslationY.value = translationY.value
-      rotate.value = withSpring(Math.PI / 4)
+      rotate.value = withRepeat(
+        withTiming(360, {
+          duration: 60000
+        }),
+        -1,
+        false
+      )
     })
     .onUpdate((event) => {
       const maxTranslateX = SCREEN_WIDTH - SIZE
@@ -32,15 +43,17 @@ export default () => {
     })
     .onEnd(() => {
       rotate.value = withSpring(0)
+      prevTranslationX.value = translationX.value
+      prevTranslationY.value = translationY.value
     })
     .runOnJS(true)
 
   const origin = useDerivedValue(() => {
     return {
-      x: translationX.value - SIZE / 2 / SIZE / 2,
-      y: translationY.value - SIZE / 2 / SIZE / 2
+      x: translationX.value + SIZE / 2,
+      y: translationY.value + SIZE / 2
     }
-  })
+  }, [translationY.value, translationX.value])
 
   const transform = useDerivedValue(() => {
     return [
@@ -48,7 +61,7 @@ export default () => {
         rotate: rotate.value
       }
     ]
-  })
+  }, [rotate.value])
 
   return (
     <GestureDetector gesture={pan}>
@@ -60,8 +73,8 @@ export default () => {
               x={translationX}
               y={translationY}
               width={SIZE}
-              origin={origin}
               height={SIZE}
+              origin={origin}
               transform={transform}
               color={'white'}
               r={15}

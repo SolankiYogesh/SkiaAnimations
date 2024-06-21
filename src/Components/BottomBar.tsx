@@ -11,34 +11,31 @@ import Screens from '../Helpers/Screens'
 import LinearBackground from './LinearBackground'
 import TabBox from './TabBox'
 import Constant from '@/Helpers/Constant'
+import SVG from '@/Resource/SVG'
 import Images from '@/Theme/Images'
 
 const {width} = Dimensions.get('window')
 
 const RouteType = {
   [Screens.SimpleCommentList]: {
-    title: 'Home',
-    icon: Images.home,
-    fill: Images.home_fill
-  },
-  [Screens.CarouselCommentList]: {
-    title: 'Feed',
-    icon: Images.feed,
-    fill: Images.feed_fill
+    title: 'Comment',
+    svg: SVG.comment,
+    fill: Images.comment_fill
   },
   [Screens.ReelsScreen]: {
-    title: 'Shop',
-    icon: Images.shop,
-    fill: Images.shop_fill
+    title: 'Reels',
+    svg: SVG.reel,
+    fill: Images.reels_fill
   },
   [Screens.AnimatedListUserScreen]: {
-    title: 'Setting',
-    icon: Images.setting,
-    fill: Images.setting_fill
+    title: 'Users',
+    svg: SVG.user,
+    fill: Images.user_fill
   }
 } as any
 
-const SLIDER_POS = Constant.TAB_BAR_WIDTH - Constant.TAB_BAR_WIDTH / 2 - Constant.MARGIN * 2
+const SLIDER_POS =
+  Constant.TAB_BAR_WIDTH - Constant.TAB_BAR_WIDTH / 2 - Constant.ICON_SIZE / 2 - Constant.MARGIN * 2
 
 export default (props: BottomTabBarProps) => {
   const {navigation, state} = props
@@ -50,7 +47,7 @@ export default (props: BottomTabBarProps) => {
     (offset: number) => {
       const index = Math.floor(offset / Constant.TAB_BAR_WIDTH)
 
-      if (index >= 0 && index < 4) {
+      if (index >= 0 && index < state.routes.length) {
         const route = state.routes[index].name
         return {route, index}
       } else {
@@ -91,11 +88,16 @@ export default (props: BottomTabBarProps) => {
           return (
             <TabBox
               animatedSlider={animatedSlider}
-              icon={isFocused ? RouteType[type].fill : RouteType[type].icon}
+              svg={RouteType[type].svg}
               isActive={isFocused}
               key={route.key}
               size={Constant.ICON_SIZE}
-              x={index * Constant.TAB_BAR_WIDTH + Constant.ICON_SIZE + Constant.MARGIN}
+              x={
+                index * Constant.TAB_BAR_WIDTH +
+                Constant.ICON_SIZE +
+                Constant.MARGIN +
+                Constant.MARGIN
+              }
               width={Constant.TAB_BAR_WIDTH}
             />
           )

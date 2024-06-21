@@ -1,11 +1,11 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {Button} from 'react-native-paper'
 import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated'
 
 import AnimatedLinearGradient from './Components/AnimatedLinearGradient'
 import AnimatedSkiaGradient from './Components/AnimatedSkiaGradient'
-import AppContainer from '@/Components/AppContianer'
+import AppButton from '@/Components/AppButton'
+import AppContainer from '@/Components/AppContainer'
 import CommonStyle from '@/Theme/CommonStyle'
 
 export default () => {
@@ -21,12 +21,8 @@ export default () => {
         {isNormal ? <AnimatedLinearGradient /> : <AnimatedSkiaGradient />}
       </Animated.View>
       <View style={styles.buttonContainer}>
-        <Button onPress={() => setIsNormal(false)} mode={'outlined'} compact>
-          {'Skia Gradient'}
-        </Button>
-        <Button onPress={() => setIsNormal(true)} mode={'outlined'} compact>
-          {'Linear Gradient'}
-        </Button>
+        <AppButton onPress={() => setIsNormal(false)} title={'Skia Gradient'} />
+        <AppButton onPress={() => setIsNormal(true)} title={'Linear Gradient'} />
       </View>
     </AppContainer>
   )

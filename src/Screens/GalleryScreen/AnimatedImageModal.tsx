@@ -11,7 +11,7 @@ import Animated, {
 } from 'react-native-reanimated'
 
 import {Colors} from '@/Helpers'
-import {SCREEN_HEIGHT, WINDOW_WIDTH} from '@/Helpers/Measurements'
+import {SCREEN_HEIGHT, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/Helpers/Measurements'
 import Images from '@/Theme/Images'
 
 export interface ModalType {
@@ -54,7 +54,11 @@ export default ({item, onClose}: AnimatedImageModalProps) => {
 
   const zoomGesture = Gesture.Pinch()
     .onChange(({scale: s}) => {
-      zoom.value = clamp(zoomSaved.value * s, 1, 4)
+      zoom.value = clamp(
+        zoomSaved.value * s,
+        0.5,
+        Math.min(WINDOW_WIDTH / 100, WINDOW_HEIGHT / 100)
+      )
     })
     .onEnd((event) => {
       zoomSaved.value = clamp(event.scale, 1, 4)

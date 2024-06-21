@@ -4,9 +4,6 @@ export interface TVideoItem {
 
 export default [
   {
-    url: 'http://docs.evostream.com/sample_content/assets/bun33s.mp4?a=234'
-  },
-  {
     url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2234234'
   },
   {

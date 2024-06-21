@@ -1,9 +1,9 @@
 import React from 'react'
 import {SharedValue} from 'react-native-reanimated'
-import {Blur, Group, Image, RoundedRect, useImage} from '@shopify/react-native-skia'
+import {Group, ImageSVG, RoundedRect, Skia} from '@shopify/react-native-skia'
 
 interface TabBoxProps {
-  icon: any
+  svg: string
   size: number
   x: number
   isActive: boolean
@@ -12,16 +12,16 @@ interface TabBoxProps {
 }
 
 export default (props: TabBoxProps) => {
-  const {icon, isActive, size, x, animatedSlider, width} = props
+  const {svg, size, x, animatedSlider, width} = props
 
-  const image = useImage(icon)
+  const imageSVG = Skia.SVG.MakeFromString(svg)
+
   return (
     <Group>
       <RoundedRect x={animatedSlider} y={0} width={width / 2} height={5} r={32} color={'white'} />
-
-      <Image style={'fill'} image={image} width={size} height={size} x={x} y={size / 2}>
-        {!isActive && <Blur blur={2} />}
-      </Image>
+      {/* <Rect width={size} height={size} x={x} y={size / 2} color={'red'}>
+      </Rect> */}
+      <ImageSVG style={'fill'} svg={imageSVG} width={size} height={size} x={x} y={size / 2} />
     </Group>
   )
 }

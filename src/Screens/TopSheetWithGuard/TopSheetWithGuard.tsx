@@ -2,10 +2,11 @@ import React, {useRef} from 'react'
 import {Button, View} from 'react-native'
 
 import TopSheet, {TopSheetRef} from './Components/TopSheet'
-import AppContainer from '@/Components/AppContianer'
+import AppContainer from '@/Components/AppContainer'
 import CommentItem from '@/Components/CommentItem'
 import {randomData} from '@/data/RandomData'
 import {CommonStyle} from '@/Helpers'
+import {randomImage} from '@/Helpers/Utils'
 
 const parsedData = {
   id: +randomData[0][0],
@@ -14,7 +15,7 @@ const parsedData = {
   body:
     randomData[0][2] +
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut alias tenetur dolorum vero blanditiis eveniet nisi, mollitia ipsa repudiandae! Tempore facilis quaerat',
-  image: 'https://picsum.photos/200/300'
+  image: randomImage()
 }
 const TopSheetWithGuard = () => {
   const sheetRef = useRef<TopSheetRef>(null)

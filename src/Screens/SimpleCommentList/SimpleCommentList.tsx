@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react'
 import {FlashList} from '@shopify/flash-list'
 
-import AppContainer from '@/Components/AppContianer'
+import AppContainer from '@/Components/AppContainer'
 import CommentItem, {Comment} from '@/Components/CommentItem'
 import {randomData} from '@/data/RandomData'
+import {randomImage} from '@/Helpers/Utils'
 
 export default () => {
   const [data, setData] = React.useState<Comment[]>([])
@@ -17,7 +18,7 @@ export default () => {
         body:
           item[2] +
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut alias tenetur dolorum vero blanditiis eveniet nisi, mollitia ipsa repudiandae! Tempore facilis quaerat',
-        image: 'https://picsum.photos/200/300'
+        image: randomImage()
       }
     })
     setData(parsedData as Comment[])

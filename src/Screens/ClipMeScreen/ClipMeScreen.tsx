@@ -3,7 +3,7 @@ import {Gesture, GestureDetector} from 'react-native-gesture-handler'
 import {clamp, useDerivedValue, useSharedValue} from 'react-native-reanimated'
 import {Canvas, Group, Image, Mask, Rect, RoundedRect, useImage} from '@shopify/react-native-skia'
 
-import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements'
+import {SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/Helpers/Measurements'
 import CommonStyle from '@/Theme/CommonStyle'
 import Images from '@/Theme/Images'
 
@@ -52,7 +52,11 @@ export default () => {
 
   const pitch = Gesture.Pinch()
     .onChange(({scale: s}) => {
-      scale.value = clamp(scaleSaved.value + s, 0.5, 1.5)
+      scale.value = clamp(
+        scaleSaved.value * s,
+        0.5,
+        Math.min(WINDOW_WIDTH / 100, WINDOW_HEIGHT / 100)
+      )
     })
     .onEnd((event) => {
       scaleSaved.value = clamp(event.scale, 0.5, 1.5)
@@ -75,8 +79,8 @@ export default () => {
 
   const origin = useDerivedValue(() => {
     return {
-      x: translationX.value - animatedSize.value / 2 / animatedSize.value / 2,
-      y: translationY.value - animatedSize.value / 2 / animatedSize.value / 2
+      x: translationX.value + animatedSize.value / 2,
+      y: translationY.value + animatedSize.value / 2
     }
   })
 

@@ -2,7 +2,6 @@ import AnimatedLinearScreen from './AnimatedLinearScreen/AnimatedLinearScreen'
 import AnimatedListUserScreen from './AnimatedListUserScreen/AnimatedListUserScreen'
 import BoxBlendModeScreen from './BoxBlendModeScreen/BoxBlendModeScreen'
 import CameraScreen from './CameraScreen/CameraScreen'
-import CarouselCommentList from './CarouselCommentList/CarouselCommentList'
 import ClipMeScreen from './ClipMeScreen/ClipMeScreen'
 import GalleryScreen from './GalleryScreen/GalleryScreen'
 import InitialScreen from './InitialScreen/InitialScreen'
@@ -19,7 +18,6 @@ export {
   AnimatedListUserScreen,
   BoxBlendModeScreen,
   CameraScreen,
-  CarouselCommentList,
   ClipMeScreen,
   GalleryScreen,
   InitialScreen,

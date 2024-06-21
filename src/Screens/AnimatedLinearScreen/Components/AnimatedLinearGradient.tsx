@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
-import {Platform, StyleSheet, View} from 'react-native'
+import {Platform, StyleSheet, Text, View} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import {Text} from 'react-native-paper'
 import Animated, {
   Easing,
   interpolateColor,

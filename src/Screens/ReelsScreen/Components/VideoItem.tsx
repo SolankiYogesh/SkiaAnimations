@@ -1,13 +1,12 @@
 import React, {memo, useContext, useRef, useState} from 'react'
-import {StyleSheet, View} from 'react-native'
+import {ActivityIndicator, StyleSheet, View} from 'react-native'
 import {Slider} from 'react-native-awesome-slider'
-import {ActivityIndicator} from 'react-native-paper'
 import {runOnJS, useAnimatedReaction, useSharedValue, withTiming} from 'react-native-reanimated'
 import Video, {VideoRef} from 'react-native-video'
 import {useIsFocused} from '@react-navigation/native'
 
 import {ItemKeyContext, ViewabilityItemsContext} from './ViewabilityTrackerFlashList'
-import {CommonStyle} from '@/Helpers'
+import {Colors, CommonStyle} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@/Helpers/Measurements'
 import {getPercentage, getSlideTime} from '@/Helpers/Utils'
@@ -111,7 +110,7 @@ const VideoItem = (props: VideoItemProps) => {
       )}
       {isBuffering && (
         <View style={[CommonStyle.flex, CommonStyle.center, StyleSheet.absoluteFill]}>
-          <ActivityIndicator />
+          <ActivityIndicator color={Colors.blue} size={'small'} />
         </View>
       )}
     </View>

@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react'
 import {Gesture, GestureDetector} from 'react-native-gesture-handler'
 import {useNavigation} from '@react-navigation/native'
-import {Canvas, Fill} from '@shopify/react-native-skia'
+import {Canvas} from '@shopify/react-native-skia'
 import _ from 'lodash'
 
 import Card from './Card'
-import AppContainer from '@/Components/AppContianer'
+import AppContainer from '@/Components/AppContainer'
 import AppHeader from '@/Components/AppHeader'
 import {Screens} from '@/Helpers'
 import CommonStyle from '@/Theme/CommonStyle'
@@ -82,7 +82,6 @@ export default () => {
       <AppHeader title={'Explore'} color={'#1eb6cd'} />
       <GestureDetector gesture={gesture}>
         <Canvas style={CommonStyle.flex}>
-          <Fill color={'#1eb6cd'} />
           {_.map(initialScreenData, (item, index) => (
             <Card
               index={index + 0.1}

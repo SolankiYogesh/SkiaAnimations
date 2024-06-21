@@ -1,19 +1,16 @@
 import React from 'react'
-import {Image, StyleSheet, Text} from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
+import {ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
 import Animated from 'react-native-reanimated'
-import Carousel from 'react-native-reanimated-carousel'
 import {widthPx} from 'measurements'
-import {randomColor} from 'utils'
 
-import {CommonStyle} from '@/Helpers'
+import {Colors, CommonStyle} from '@/Helpers'
 
 export interface Comment {
   id: number
   name: string
   email: string
   body: string
-  image: string | string[]
+  image: ImageSourcePropType
 }
 interface CommentItemProps {
   item: Comment
@@ -22,42 +19,15 @@ export default (props: CommentItemProps) => {
   const {item} = props
 
   return (
-    <LinearGradient colors={randomColor()} style={styles.itemContainer}>
+    <View style={styles.itemContainer}>
       <Text style={styles.nameTextStyle}>
         {item.name + '   '}
         <Text style={styles.emailTextStyle}>{item.email}</Text>
       </Text>
 
       <Text style={styles.bodyTextStyle}>{item.body}</Text>
-      {item.image.length > 0 && typeof item.image === 'object' ? (
-        <Carousel
-          loop
-          width={widthPx(90)}
-          height={200}
-          autoPlay
-          panGestureHandlerProps={{
-            activeOffsetX: [-10, 10]
-          }}
-          data={item.image}
-          scrollAnimationDuration={500}
-          renderItem={({item: ItemR}) => (
-            <Image
-              style={styles.imageStyle}
-              source={{
-                uri: ItemR
-              }}
-            />
-          )}
-        />
-      ) : (
-        <Animated.Image
-          style={styles.imageStyle}
-          source={{
-            uri: item.image as string
-          }}
-        />
-      )}
-    </LinearGradient>
+      <Animated.Image style={styles.imageStyle} source={item.image} />
+    </View>
   )
 }
 
@@ -67,7 +37,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     rowGap: 10,
-    ...CommonStyle.shadow
+    ...CommonStyle.shadow,
+    borderColor: Colors.white,
+    borderWidth: 1
   },
   imageStyle: {
     width: widthPx(90),
@@ -78,15 +50,18 @@ const styles = StyleSheet.create({
   nameTextStyle: {
     fontSize: 18,
     fontWeight: 'bold',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: Colors.white
   },
   emailTextStyle: {
     fontSize: 14,
     fontWeight: '600',
-    marginLeft: 10
+    marginLeft: 10,
+    color: Colors.white
   },
   bodyTextStyle: {
     fontSize: 13,
-    fontWeight: '300'
+    fontWeight: '300',
+    color: Colors.white
   }
 })

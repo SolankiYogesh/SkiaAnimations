@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import _ from 'lodash'
 
 import UserItem from './Components/UserItem'
-import AppContainer from '@/Components/AppContianer'
+import AppContainer from '@/Components/AppContainer'
 import {CommonStyle} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 
