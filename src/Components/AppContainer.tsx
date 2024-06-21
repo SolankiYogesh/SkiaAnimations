@@ -3,7 +3,7 @@ import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
 import {BackdropBlur, Canvas, Fill, Image, useImage} from '@shopify/react-native-skia'
 
 import {CommonStyle} from '@/Helpers'
-import {SCREEN_HEIGHT, WINDOW_HEIGHT, WINDOW_WIDTH} from '@/Helpers/Measurements'
+import {SCREEN_HEIGHT, WINDOW_WIDTH} from '@/Helpers/Measurements'
 import Images from '@/Theme/Images'
 
 interface AppContainerProps {
@@ -21,7 +21,7 @@ export default ({children, style}: AppContainerProps) => {
           x={0}
           y={0}
           width={WINDOW_WIDTH}
-          height={WINDOW_HEIGHT}
+          height={SCREEN_HEIGHT}
           fit={'cover'}
         />
         <BackdropBlur blur={12} clip={{x: 0, y: 0, width: WINDOW_WIDTH, height: SCREEN_HEIGHT}}>

@@ -78,7 +78,7 @@ export default () => {
     })
 
   return (
-    <AppContainer style={CommonStyle.flex}>
+    <AppContainer>
       <AppHeader title={'Explore'} color={'#1eb6cd'} />
       <GestureDetector gesture={gesture}>
         <Canvas style={CommonStyle.flex}>
