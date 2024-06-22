@@ -10,7 +10,8 @@ import {
 import Animated, {
   useAnimatedRef,
   useScrollViewOffset,
-  useSharedValue
+  useSharedValue,
+  withTiming
 } from 'react-native-reanimated'
 
 import ScrollProgressView from './Components/ScrollProgressView'
@@ -20,11 +21,18 @@ export default () => {
   const scrollRef = useAnimatedRef<Animated.ScrollView>()
   const scrollHandler = useScrollViewOffset(scrollRef)
   const height = useSharedValue(0)
+  const opacity = useSharedValue(0)
 
   return (
     <View style={styles.container}>
       <Animated.ScrollView
         ref={scrollRef}
+        onTouchStart={() => {
+          opacity.value = withTiming(1)
+        }}
+        onTouchEnd={() => {
+          opacity.value = withTiming(0)
+        }}
         onLayout={(event) => {
           height.value = event.nativeEvent.layout.height
         }}
@@ -47,7 +55,7 @@ export default () => {
           <LearnMoreLinks />
         </View>
       </Animated.ScrollView>
-      <ScrollProgressView y={scrollHandler} height={height} />
+      <ScrollProgressView opacity={opacity} y={scrollHandler} height={height} />
     </View>
   )
 }

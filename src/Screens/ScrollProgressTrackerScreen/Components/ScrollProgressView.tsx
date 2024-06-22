@@ -1,11 +1,12 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet} from 'react-native'
 import AnimateableText from 'react-native-animateable-text'
 import {Slider} from 'react-native-awesome-slider'
-import {
+import Animated, {
   clamp,
   SharedValue,
   useAnimatedProps,
+  useAnimatedStyle,
   useDerivedValue,
   useSharedValue
 } from 'react-native-reanimated'
@@ -16,9 +17,10 @@ import {SCREEN_WIDTH} from '@/Helpers/Measurements'
 interface ScrollProgressViewProps {
   height: SharedValue<number>
   y: SharedValue<number>
+  opacity: SharedValue<number>
 }
 
-export default ({y, height}: ScrollProgressViewProps) => {
+export default ({y, height, opacity}: ScrollProgressViewProps) => {
   const min = useSharedValue(0)
   const max = useSharedValue(100)
 
@@ -33,8 +35,14 @@ export default ({y, height}: ScrollProgressViewProps) => {
     }
   })
 
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value
+    }
+  }, [opacity])
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animatedStyle]}>
       <AnimateableText style={styles.textStyle} animatedProps={animatedProps} />
       <Slider
         thumbWidth={0}
@@ -48,7 +56,7 @@ export default ({y, height}: ScrollProgressViewProps) => {
         }}
         containerStyle={styles.containerStyle}
       />
-    </View>
+    </Animated.View>
   )
 }
 
