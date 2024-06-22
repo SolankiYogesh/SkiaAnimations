@@ -1,7 +1,8 @@
-import React, {useMemo, useRef} from 'react'
+import React, {useCallback, useMemo, useRef, useState} from 'react'
 import {useSafeAreaFrame, useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useHeaderHeight} from '@react-navigation/elements'
 import {FlashList} from '@shopify/flash-list'
+import _ from 'lodash'
 
 import VideoItem from './Components/VideoItem'
 import {ViewabilityTrackerFlashList} from './Components/ViewabilityTrackerFlashList'
@@ -14,14 +15,22 @@ export default () => {
   const height = useHeaderHeight()
   const frame = useSafeAreaFrame()
   const {bottom} = useSafeAreaInsets()
+  const [videoData, setVideoData] = useState<VideoType[]>(VideoData)
 
   const currentHeight = useMemo(() => frame.height - height, [height, frame])
+
+  const onEnd = useCallback(() => {
+    setVideoData((state) => {
+      const clone = _.map(VideoData, (i, index) => ({...i, id: state.length + index + 1}))
+      return [...state, ...clone]
+    })
+  }, [])
 
   return (
     <AppContainer>
       <ViewabilityTrackerFlashList
         ref={ref}
-        data={VideoData}
+        data={videoData}
         keyExtractor={(item) => item.id}
         renderItem={({item}) => (
           <VideoItem
@@ -30,6 +39,7 @@ export default () => {
             url={item.url}
           />
         )}
+        onEndReached={onEnd}
         drawDistance={currentHeight}
         estimatedItemSize={currentHeight}
         disableIntervalMomentum

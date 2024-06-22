@@ -1,4 +1,4 @@
-import React, {memo, useContext, useRef, useState} from 'react'
+import React, {memo, useCallback, useContext, useRef, useState} from 'react'
 import {ActivityIndicator, StyleSheet, View} from 'react-native'
 import {Slider} from 'react-native-awesome-slider'
 import {runOnJS, useAnimatedReaction, useSharedValue, withTiming} from 'react-native-reanimated'
@@ -18,7 +18,7 @@ interface VideoItemProps {
 }
 const VideoItem = (props: VideoItemProps) => {
   const {url, height = SCREEN_HEIGHT, bottom = Constant.HEIGHT} = props
-  const [isPaused, setIsPaused] = useState(true)
+
   const min = useSharedValue(0)
   const max = useSharedValue(100)
   const progress = useSharedValue(0)
@@ -30,24 +30,17 @@ const VideoItem = (props: VideoItemProps) => {
   const context = useContext(ViewabilityItemsContext)
   const isFocus = useIsFocused()
 
-  const invisibleAction = () => {
+  const invisibleAction = useCallback(() => {
     requestAnimationFrame(() => {
-      // videoRef.current?.stopAsync();
-      setIsPaused(true)
+      videoRef.current?.pause()
     })
-  }
+  }, [])
 
-  const visibleAction = () => {
+  const visibleAction = useCallback(() => {
     requestAnimationFrame(() => {
-      // you could also do this imperatively instead of calling useState
-      // videoRef.current?.playAsync();
-
-      // here would be also place for adding logic if the current video has already been played
-      // and to reset it to the beginning. This is not implemented here
-
-      setIsPaused(false)
+      videoRef.current?.resume()
     })
-  }
+  }, [])
 
   // we stop or play the Video depending on the list visibility state
   useAnimatedReaction(
@@ -86,7 +79,6 @@ const VideoItem = (props: VideoItemProps) => {
           cacheProgress.value = withTiming(buffer)
         }}
         repeat
-        paused={isPaused}
         resizeMode={'contain'}
         playInBackground={false}
         onLoadStart={() => setIsBuffering(true)}

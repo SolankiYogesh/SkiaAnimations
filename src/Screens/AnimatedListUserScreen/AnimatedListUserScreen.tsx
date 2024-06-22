@@ -6,7 +6,7 @@ import _ from 'lodash'
 
 import UserItem from './Components/UserItem'
 import AppContainer from '@/Components/AppContainer'
-import {CommonStyle} from '@/Helpers'
+import {Colors, CommonStyle} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 
 function getRandomScore() {
@@ -79,14 +79,19 @@ export default () => {
     <AppContainer>
       {isLoading ? (
         <View style={CommonStyle.centerFlex}>
-          <ActivityIndicator />
+          <ActivityIndicator color={Colors.blue} size={'small'} />
         </View>
       ) : (
         <Animated.FlatList
           itemLayoutAnimation={LinearTransition.springify().duration(5000)}
           contentContainerStyle={styles.container}
           refreshControl={
-            <RefreshControl refreshing={isRefreshing} onRefresh={() => fetchAPIData(true)} />
+            <RefreshControl
+              progressViewOffset={top}
+              refreshing={isRefreshing}
+              colors={[Colors.blue]}
+              onRefresh={() => fetchAPIData(true)}
+            />
           }
           data={users}
           keyExtractor={(item) => item.id.toString()}
