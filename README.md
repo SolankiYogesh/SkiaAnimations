@@ -28,4 +28,6 @@ Hello everyone, here's a quick example of how you can create beautiful animation
 
 ## 6. Vision Camera Usage with Animated Image Preview 🚀
 
-[ShaderScreen.webm](https://github.com/SolankiYogesh/SkiaAnimations/assets/70507671/9e0d27bd-43fa-4141-9bf1-af4e54c73135)
+https://github.com/SolankiYogesh/SkiaAnimations/assets/70507671/68752e1d-7409-4e7d-9e48-ceeb92865101
+
+
