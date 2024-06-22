@@ -2,23 +2,6 @@ import RNFS from 'react-native-fs'
 import _ from 'lodash'
 
 import Constant from './Constant'
-import Images from '@/Theme/Images'
-
-const randomColor = () => {
-  const colors = [
-    ['#009FFF', '#A5888D'],
-    ['#a8ff78', '#78ffd6'],
-    ['#12c2e9', '#c471ed', '#f64f59'],
-    ['#A196E9', '#0D78E3']
-  ]
-  return colors[Math.floor(Math.random() * colors.length)]
-}
-function hexadecimal(color: string) {
-  return (percentage: number) => {
-    const decimal = `0${Math.round(255 * (percentage / 100)).toString(16)}`.slice(-2).toUpperCase()
-    return color + decimal
-  }
-}
 
 const getPercentage = (value: number, duration: number) => {
   const progress = (value / duration) * 100
@@ -38,7 +21,7 @@ const createFolder = (fileName: string) => {
         .then(() => {
           resolve(path + '/' + fileName)
         })
-        .catch((error) => {
+        .catch(() => {
           resolve(false)
         })
     } catch (_) {
@@ -67,24 +50,4 @@ const sortUris = (uris: string[]) => {
   )
 }
 
-const randomImage = function () {
-  const obj: any = {
-    image1: Images.image1,
-    image2: Images.image2,
-    background: Images.background,
-    dog: Images.dog
-  }
-  const keys = Object.keys(obj)
-  return obj[keys[(keys.length * Math.random()) << 0]]
-}
-
-export {
-  createFolder,
-  getPercentage,
-  getSlideTime,
-  hexadecimal,
-  random,
-  randomColor,
-  randomImage,
-  sortUris
-}
+export {createFolder, getPercentage, getSlideTime, random, sortUris}

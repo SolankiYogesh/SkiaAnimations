@@ -37,8 +37,8 @@ export default (props: CardProps) => {
         r={32}
         color={'lightblue'}
       >
-        <Shadow dx={12} dy={12} blur={25} color={'#3e7d87'} inner={isInner} />
-        <Shadow dx={-12} dy={-12} blur={25} color={'#87d4e0'} inner={isInner} />
+        <Shadow dx={12} dy={12} blur={25} color={Colors.blueShade3E} inner={isInner} />
+        <Shadow dx={-12} dy={-12} blur={25} color={Colors.blueShade87} inner={isInner} />
       </RoundedRect>
       <Text
         x={WINDOW_WIDTH / 2 - WIDTH / 2 + WIDTH / 2 - font.measureText(title).width / 2}

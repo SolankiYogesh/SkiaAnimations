@@ -1,84 +1,52 @@
-export interface TVideoItem {
-  url: string
-}
-
 export default [
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2234234'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=2342343'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=1234234'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2rtrthrt'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=234gerger3'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=1234t3gre'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=22342t43gre'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=334zgtr'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=234234'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2egrgerhjj'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=3234211gedfger'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=234wsdgfbh1'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=t34gerb432'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=4t3ger34zh3'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=1234123rtergdf'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=22342zh24se'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=311tgebdxdd'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=12345tz543tqrsf'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2235zjk,ffbvewr'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=334244zrhgsd'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=123zue5rsdf'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2234rdfgnhj'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=3ewerw4zgtr'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4?a=1gbhj'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_5MB.mp4?a=2gfdg'
-  },
-  {
-    url: 'https://test-videos.co.uk/vids/sintel/mp4/h264/1080/Sintel_1080_10s_5MB.mp4?a=3wrebffntn78'
-  }
-] as TVideoItem[]
+  {id: 501, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/501.mp4'},
+  {id: 502, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/502.mp4'},
+  {id: 503, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/503.mp4'},
+  {id: 504, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/504.mp4'},
+  {id: 505, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/505.mp4'},
+  {id: 506, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/506.mp4'},
+  {id: 507, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/507.mp4'},
+  {id: 508, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/508.mp4'},
+  {id: 509, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/509.mp4'},
+  {id: 510, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/510.mp4'},
+  {id: 511, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/511.mp4'},
+  {id: 512, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/512.mp4'},
+  {id: 513, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/513.mp4'},
+  {id: 514, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/514.mp4'},
+  {id: 515, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/515.mp4'},
+  {id: 516, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/516.mp4'},
+  {id: 517, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/517.mp4'},
+  {id: 518, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/518.mp4'},
+  {id: 519, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/519.mp4'},
+  {id: 520, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/520.mp4'},
+  {id: 521, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/521.mp4'},
+  {id: 522, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/522.mp4'},
+  {id: 523, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/523.mp4'},
+  {id: 524, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/524.mp4'},
+  {id: 525, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/525.mp4'},
+  {id: 526, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/526.mp4'},
+  {id: 527, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/527.mp4'},
+  {id: 528, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/528.mp4'},
+  {id: 529, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/529.mp4'},
+  {id: 530, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/530.mp4'},
+  {id: 531, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/531.mp4'},
+  {id: 532, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/532.mp4'},
+  {id: 533, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/533.mp4'},
+  {id: 534, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/534.mp4'},
+  {id: 535, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/535.mp4'},
+  {id: 536, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/536.mp4'},
+  {id: 537, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/537.mp4'},
+  {id: 538, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/538.mp4'},
+  {id: 539, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/539.mp4'},
+  {id: 540, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/540.mp4'},
+  {id: 541, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/541.mp4'},
+  {id: 542, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/542.mp4'},
+  {id: 543, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/543.mp4'},
+  {id: 544, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/544.mp4'},
+  {id: 545, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/545.mp4'},
+  {id: 546, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/546.mp4'},
+  {id: 547, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/547.mp4'},
+  {id: 548, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/548.mp4'},
+  {id: 549, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/549.mp4'},
+  {id: 550, url: 'https://d32r8fal0p61y.cloudfront.net/public/vSmallPosts/550.mp4'}
+] as VideoType[]

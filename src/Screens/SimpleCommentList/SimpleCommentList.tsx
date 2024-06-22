@@ -1,34 +1,16 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {FlashList} from '@shopify/flash-list'
 
-import AppContainer from '@/Components/AppContainer'
-import CommentItem, {Comment} from '@/Components/CommentItem'
-import {randomData} from '@/data/RandomData'
-import {randomImage} from '@/Helpers/Utils'
+import {AppContainer, CommentItem} from '@/Components'
+import CommentData from '@/data/CommentData'
 
 export default () => {
-  const [data, setData] = React.useState<Comment[]>([])
-
-  useEffect(() => {
-    const parsedData = randomData.map((item) => {
-      return {
-        id: item[0],
-        name: item[1],
-        email: item[3],
-        body:
-          item[2] +
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut alias tenetur dolorum vero blanditiis eveniet nisi, mollitia ipsa repudiandae! Tempore facilis quaerat',
-        image: randomImage()
-      }
-    })
-    setData(parsedData as Comment[])
-  }, [])
-
   return (
     <AppContainer>
       <FlashList
-        data={data}
+        data={CommentData}
         estimatedItemSize={300}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => <CommentItem item={item} />}
       />
     </AppContainer>

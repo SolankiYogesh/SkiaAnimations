@@ -74,7 +74,6 @@ const float smoothness = 0.01;
 
 const float seed = 12.9898;
 
-// http://byteblacksmith.com/improvements-to-the-canonical-one-liner-glsl-rand-for-opengl-es-2-0/
 float random(vec2 co)
 {
     highp float a = seed;
@@ -84,9 +83,7 @@ float random(vec2 co)
     highp float sn= mod(dt,3.14);
     return fract(sin(sn) * c);
 }
-
-// 2D Noise based on Morgan McGuire @morgan3d
-// https://www.shadertoy.com/view/4dS3Wd
+    
 float noise (in vec2 st) {
     vec2 i = floor(st);
     vec2 f = fract(st);

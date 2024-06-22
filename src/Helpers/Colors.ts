@@ -8,6 +8,10 @@ const Colors = {
   darkShade211: '#211E21',
   darkShade1B1: '#1B191C',
   darkShade352: '#352413',
-  lighte7d: '#e7d5c4'
+  lighte7d: '#e7d5c4',
+  blueShade1E: '#1eb6cd',
+  blueShade3E: '#3e7d87',
+  blueShade87: '#87d4e0',
+  whiteShadeF4: '#f4f4f4'
 }
 export default Colors

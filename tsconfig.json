@@ -1,11 +1,14 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "utils": ["./src/Helpers/Utils"],
       "measurements": ["./src/Helpers/Measurements"]
-    }
-  }
+    },
+    "typeRoots": ["./src/types"],
+  },
+  
 }

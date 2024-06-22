@@ -6,11 +6,11 @@ import {FlashList} from '@shopify/flash-list'
 import VideoItem from './Components/VideoItem'
 import {ViewabilityTrackerFlashList} from './Components/ViewabilityTrackerFlashList'
 import AppContainer from '@/Components/AppContainer'
-import data, {TVideoItem} from '@/data/VideoData'
+import VideoData from '@/data/VideoData'
 import Constant from '@/Helpers/Constant'
 
 export default () => {
-  const ref = useRef<FlashList<TVideoItem>>(null)
+  const ref = useRef<FlashList<VideoType>>(null)
   const height = useHeaderHeight()
   const frame = useSafeAreaFrame()
   const {bottom} = useSafeAreaInsets()
@@ -21,8 +21,8 @@ export default () => {
     <AppContainer>
       <ViewabilityTrackerFlashList
         ref={ref}
-        data={data}
-        keyExtractor={(item) => item.url}
+        data={VideoData}
+        keyExtractor={(item) => item.id}
         renderItem={({item}) => (
           <VideoItem
             height={currentHeight}

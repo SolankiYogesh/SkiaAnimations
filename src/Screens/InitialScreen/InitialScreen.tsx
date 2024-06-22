@@ -5,9 +5,8 @@ import {Canvas} from '@shopify/react-native-skia'
 import _ from 'lodash'
 
 import Card from './Card'
-import AppContainer from '@/Components/AppContainer'
-import AppHeader from '@/Components/AppHeader'
-import {Screens} from '@/Helpers'
+import {AppContainer, AppHeader} from '@/Components'
+import {Colors, Screens} from '@/Helpers'
 import CommonStyle from '@/Theme/CommonStyle'
 
 const initialScreenData = [
@@ -79,7 +78,7 @@ export default () => {
 
   return (
     <AppContainer>
-      <AppHeader title={'Explore'} color={'#1eb6cd'} />
+      <AppHeader title={'Explore'} color={Colors.blueShade1E} />
       <GestureDetector gesture={gesture}>
         <Canvas style={CommonStyle.flex}>
           {_.map(initialScreenData, (item, index) => (

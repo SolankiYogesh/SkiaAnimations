@@ -4,8 +4,7 @@ import Animated, {ZoomIn, ZoomOut} from 'react-native-reanimated'
 
 import AnimatedLinearGradient from './Components/AnimatedLinearGradient'
 import AnimatedSkiaGradient from './Components/AnimatedSkiaGradient'
-import AppButton from '@/Components/AppButton'
-import AppContainer from '@/Components/AppContainer'
+import {AppButton, AppContainer} from '@/Components'
 import CommonStyle from '@/Theme/CommonStyle'
 
 export default () => {

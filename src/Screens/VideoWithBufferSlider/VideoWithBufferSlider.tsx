@@ -4,7 +4,7 @@ import {Slider} from 'react-native-awesome-slider'
 import {useSharedValue, withTiming} from 'react-native-reanimated'
 import Video, {VideoRef} from 'react-native-video'
 
-import AppHeader from '@/Components/AppHeader'
+import {AppHeader} from '@/Components'
 import {CommonStyle} from '@/Helpers'
 import {getPercentage, getSlideTime} from '@/Helpers/Utils'
 

@@ -15,8 +15,7 @@ import {
 import {useIsFocused, useNavigation} from '@react-navigation/native'
 
 import TopCameraBackground from './TopCameraBackground'
-import AppButton from '@/Components/AppButton'
-import AppContainer from '@/Components/AppContainer'
+import {AppButton, AppContainer} from '@/Components'
 import {Colors, Screens} from '@/Helpers'
 import Constant from '@/Helpers/Constant'
 import {WINDOW_WIDTH} from '@/Helpers/Measurements'

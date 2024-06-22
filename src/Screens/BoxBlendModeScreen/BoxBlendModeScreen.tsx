@@ -79,8 +79,8 @@ export default () => {
               color={'white'}
               r={15}
             >
-              <Shadow dx={5} dy={5} blur={8} color={'#f4f4f4'} />
-              <Shadow dx={-5} dy={-5} blur={8} color={'#f4f4f4'} />
+              <Shadow dx={5} dy={5} blur={8} color={Colors.whiteShadeF4} />
+              <Shadow dx={-5} dy={-5} blur={8} color={Colors.whiteShadeF4} />
             </RoundedRect>
           }
         >

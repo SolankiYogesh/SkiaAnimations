@@ -1,19 +1,12 @@
 import React from 'react'
-import {ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import {widthPx} from 'measurements'
 
 import {Colors, CommonStyle} from '@/Helpers'
 
-export interface Comment {
-  id: number
-  name: string
-  email: string
-  body: string
-  image: ImageSourcePropType
-}
 interface CommentItemProps {
-  item: Comment
+  item: CommentType
 }
 export default (props: CommentItemProps) => {
   const {item} = props
@@ -21,12 +14,17 @@ export default (props: CommentItemProps) => {
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.nameTextStyle}>
-        {item.name + '   '}
-        <Text style={styles.emailTextStyle}>{item.email}</Text>
+        {item.user.fullName + '   '}
+        <Text style={styles.emailTextStyle}>{item.user.username}</Text>
       </Text>
 
       <Text style={styles.bodyTextStyle}>{item.body}</Text>
-      <Animated.Image style={styles.imageStyle} source={item.image} />
+      <Animated.Image
+        style={styles.imageStyle}
+        source={{
+          uri: `https://picsum.photos/200/300?random=${item.id}`
+        }}
+      />
     </View>
   )
 }

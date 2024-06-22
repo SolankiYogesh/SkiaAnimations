@@ -1,17 +1,17 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
 
-import BottomBar from '../Components/BottomBar'
 import Screens from '../Helpers/Screens'
+import {BottomBar} from '@/Components'
 import {AnimatedListUserScreen, ReelsScreen, SimpleCommentList} from '@/Screens'
 
-const Tab = createBottomTabNavigator()
+const Tab = createMaterialTopTabNavigator()
 export default () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false
+        swipeEnabled: false
       }}
       tabBar={(props) => <BottomBar {...props} />}
     >

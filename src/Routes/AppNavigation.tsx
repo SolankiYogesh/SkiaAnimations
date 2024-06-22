@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
 import BottomNavigation from './BottomNavigation'
-import AppHeader from '@/Components/AppHeader'
+import {AppHeader} from '@/Components'
 import {Screens} from '@/Helpers'
 import {
   AnimatedLinearScreen,
